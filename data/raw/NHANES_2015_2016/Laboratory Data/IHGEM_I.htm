@@ -1,0 +1,740 @@
+﻿<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "" ""><HTML lang="en" lang="en" xml:lang="en" xmlns="http://www.w3c.org/1999/xhtml"><HEAD><META 
+content="IE=11.0000" http-equiv="X-UA-Compatible">
+     
+<META http-equiv="content-type" content="text/html; charset=utf-8">     
+<TITLE>IHGEM_I</TITLE>     
+<META name="title" content="NHANES 2015-2016: Mercury: Inorganic, Ethyl and Methyl – Blood  Data Documentation, Codebook, and Frequencies"> 
+    
+<STYLE type="text/css">
+					.nhanes-doc { font: 75% Verdana, Arial, Helvetica, sans-serif; }
+
+					.nhanes-doc h1 {
+					color: #0c5205;
+					font-family: "Trebuchet MS", Arial, sans-serif;
+					font-size: 2em;
+					font-weight: normal;
+					margin-bottom: 10px;
+					margin-top: 0;
+					}
+
+					.nhanes-doc h2 {
+					color: #0c5205;
+					font-family: "Trebuchet MS", Arial, sans-serif;
+					font-size: 1.6em;
+					font-weight: normal;
+					}
+
+					.nhanes-doc h3 {
+					color: #000;
+					font-family: "Trebuchet MS", Arial, sans-serif;
+					font-size: 1.5em;
+					font-weight: normal;
+					}
+
+					.nhanes-doc h3.vartitle {
+					background-color: #c1d5b0;
+					padding: 6px 12px;
+					}
+
+					.nhanes-doc h4 {
+					color: #000;
+					font-family: "Trebuchet MS", Arial, sans-serif;
+					font-size: 1.3em;
+					font-weight: bold;
+					}
+
+					.nhanes-doc h5 {
+					color: #000;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					font-size: 1em;
+					font-weight: bold;
+					}
+
+					.nhanes-doc h5.specialnote {
+					color: #000;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					font-size: 1.2em;
+					font-style: italic;
+					font-weight: bold;
+					}
+
+					.nhanes-doc a {
+					color: #039;
+					text-decoration: none;
+					}
+
+					.nhanes-doc p {
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					font-size: 1em;
+					line-height: 1.33em;
+					margin: 0 3em 1em;
+					padding: 0;
+					text-align: left;
+					}
+
+					.nhanes-doc ul {
+					list-style-type: disc;
+					margin: 0 3em 1em;
+					padding: 0;
+					}
+
+					.nhanes-doc ol {
+					list-style-type: decimal;
+					margin: 0;
+					overflow: hidden;
+					padding: 0;
+					padding-left: 2em;
+					}
+
+					.nhanes-doc li {
+					margin-left: 1.5em;
+					margin-top: 0.7em;
+					}
+
+					.nhanes-doc table {
+					border: #000 1px solid;
+					border-collapse: collapse;
+					margin: 0 auto 1em;
+					max-width: 600px;
+					padding: 2px;
+					page-break-inside: avoid;
+					table-layout: auto;
+					}
+
+					.nhanes-doc th {
+					background: #f4f4e1;
+					border: #000 1px solid;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					padding: 5px;
+					text-align: center;
+					vertical-align: top;
+					}
+
+					.nhanes-doc th.rowheader {
+					background: #f4f4e1;
+					border: #000 1px solid;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					padding: 5px;
+					text-align: center;
+					vertical-align: top;
+					}
+
+					.nhanes-doc td {
+					border: #000 1px solid;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					padding: 5px;
+					text-align: left;
+					vertical-align: top;
+					}
+
+					.nhanes-doc td.values2 {
+					text-align: RIGHT;
+					vertical-align: top;
+					}
+
+					.nhanes-doc table caption {
+					font-weight: bold;
+					padding-bottom: 0.5em;
+					}
+
+					.nhanes-doc div#wrapper { width: 650px; }
+
+					.nhanes-doc div#toc {
+					border: solid 1px #CCC;
+					float: left;
+					height: 95%;
+					left: 750px;
+					overflow: hidden;
+					position: fixed;
+					top: 10px;
+					width: 400px;
+					z-index: 10;
+					}
+
+					.nhanes-doc div#toc h3 {
+					background-color: #f4f4e1;
+					border-bottom: solid 1px #ccc;
+					letter-spacing: 8px;
+					margin: 0;
+					padding: 8px;
+					text-align: center;
+					text-transform: uppercase;
+					}
+
+					.nhanes-doc div#toc-scroll {
+					height: calc(100% - 1.5em);
+					overflow: scroll;
+					width: 100%;
+					}
+
+					.nhanes-doc div#toc li {
+					margin-left: -0.5em;
+					margin-right: -0.5em;
+					}
+
+					.nhanes-doc div#PageHeader {
+					border-bottom: thin solid #999;
+					margin-bottom: 12px;
+					width: 650px;
+					}
+
+					.nhanes-doc div#Sections { width: 650px; }
+
+					.nhanes-doc div#Codebook { width: 650px; }
+
+					.nhanes-doc div#Codebook dl {
+					margin: 2em 0 10px 40px;
+					padding: 0;
+					width: 600px;
+					display: table;
+					}
+
+					.nhanes-doc div#Codebook dt {
+					float: left;
+					font-weight: bold;
+					margin: 0;
+					padding: 0.5em;
+					width: 150px;
+					display: table-cell;
+					}
+
+					.nhanes-doc div#Codebook dd {
+					float: left;
+					margin: 0;
+					padding: 0.5em;
+					width: 420px;
+					display: table-cell;
+					}
+
+					.nhanes-doc div#References {
+					page-break-after: always;
+					width: 650px;
+					}
+
+					.nhanes-doc div#Appendix {
+					page-break-after: always;
+					width: 650px;
+					}
+
+					.nhanes-doc table.values {
+					border: 2px;
+					left: 20px;
+					margin-bottom: 20px;
+					page-break-inside: avoid;
+					position: relative;
+					width: 600px;
+					}
+
+					.nhanes-doc span.file-size { color: gray; }
+
+					.nhanes-doc .pagebreak {
+					background-color: transparent;
+					display: block;
+					page-break-after: always;
+					page-break-inside: avoid;
+					}
+				</STYLE>
+     
+<STYLE type="text/css" media="print">
+					.nhanes-doc div#toc { display: none; }
+				</STYLE>
+   </HEAD>   
+<BODY class="nhanes-doc">
+<DIV id="toc">
+<H3>Table of Contents</H3>
+<DIV id="toc-scroll">
+<UL>
+  <LI><A href="#Component_Description">Component Description</A>           </LI>
+  <LI><A href="#Eligible_Sample">Eligible Sample</A>           </LI>
+  <LI><A href="#Description_of_Laboratory_Methodology">Description of Laboratory 
+  Methodology</A>           </LI>
+  <LI><A href="#Laboratory_Method_Files">Laboratory Method Files</A>           
+  </LI>
+  <LI><A href="#Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality 
+  Assurance and Monitoring</A>           </LI>
+  <LI><A href="#Data_Processing_and_Editing">Data Processing and Editing</A>     
+        </LI>
+  <LI><A href="#Analytic_Notes">Analytic Notes</A>           </LI>
+  <LI><A href="#References">References</A>           </LI>
+  <LI><A href="#Codebook">Codebook</A>             
+  <UL id="CodebookLinks">
+    <LI><A href="#SEQN">SEQN - Respondent sequence number</A>               
+</LI>
+    <LI><A href="#WTSH2YR">WTSH2YR - Blood metal weights</A>               </LI>
+    <LI><A href="#LBXIHG">LBXIHG - Mercury, inorganic (ug/L)</A>               
+    </LI>
+    <LI><A href="#LBDIHGSI">LBDIHGSI - Mercury, inorganic (umol/L)</A>           
+        </LI>
+    <LI><A href="#LBDIHGLC">LBDIHGLC - Mercury, inorganic comment code</A>       
+            </LI>
+    <LI><A href="#LBXBGE">LBXBGE - Mercury, ethyl (ug/L)</A>               </LI>
+    <LI><A href="#LBDBGELC">LBDBGELC - Mercury, ethyl comment code</A>           
+        </LI>
+    <LI><A href="#LBXBGM">LBXBGM - Mercury, methyl (ug/L)</A>               
+</LI>
+    <LI><A href="#LBDBGMLC">LBDBGMLC - Mercury, methyl comment code</A>          
+         </LI></UL></LI></UL></DIV></DIV>
+<DIV id="wrapper">
+<DIV id="PageHeader">
+<H1>National Health and Nutrition Examination Survey</H1>
+<H2>2015-2016 Data Documentation, Codebook, and Frequencies</H2>
+<H3>Mercury: Inorganic, Ethyl and Methyl – Blood  (IHGEM_I)</H3>
+<H4> Data File: IHGEM_I.xpt</H4>
+<H5 class="left">First Published: June 2018</H5>
+<H5 class="right">Last Revised: NA</H5></DIV>
+<DIV id="Sections">
+<H2 id="Component_Description">Component Description</H2>
+<P><STRONG><B>Inorganic, Ethyl and Methyl</B> <B>Mercury</B></STRONG></P>
+<P>Uncertainties exist regarding levels of exposure to methyl mercury from fish 
+consumption and potential health effects resulting from this exposure. Past 
+estimates of exposure to methyl mercury have been obtained from results of food 
+consumption surveys and measures of methyl mercury in fish. Measures of a 
+biomarker of exposure are needed for improved exposure assessments. </P>
+<P>Blood measures of total and inorganic mercury are important for evaluating 
+exposure to mercury in interior latex paints.</P>
+<H2 id="Eligible_Sample">Eligible Sample</H2>
+<P>All examined participants aged 1-11 years, and a one-half sample from 
+participants aged 12 years and older were eligible.</P>
+<H2 id="Description_of_Laboratory_Methodology">Description of Laboratory 
+Methodology</H2>
+<P><STRONG>Inorganic, Ethyl and Methyl Mercury </STRONG></P>
+<P>The mercuries in blood are measured using stannous chloride as a reductant, 
+also utilizing microwave digestion. Mercury vapor (reduced from inorganic 
+mercury compounds) is measured via the same quartz cell at 253.7 nm.<BR></P>
+<P>The difference between total and inorganic mercury represents the organic 
+mercury in blood. Mercury analysis identifies cases of mercury toxicity. The 
+main organs affected by mercury are the brain and kidneys. Psychic and emotional 
+disturbances are the initial signs of chronic intoxication by elemental mercury 
+vapor or salts. Parasthesia and neuralgia may develop. Renal disease, digestive 
+disturbances, and ocular lesions can also develop. Kidney toxicity is an 
+important consequence of exposure to mercury salts.</P>
+<P>Refer to the Laboratory Method Files section for a detailed description of 
+the laboratory methods used. </P>
+<P>There were no changes to lab methods, lab equipment, or lab site for this 
+component in the NHANES 2015-2016 cycle.</P>
+<H2 id="Laboratory_Method_Files">Laboratory Method Files</H2>
+<P><A href="https://wwwn.cdc.gov/nchs/data/nhanes/2015-2016/labmethods/IHgEM_I_MET.pdf" 
+target="_blank">Inorganic Mercury, Methyl Mercury, Ethyl Mercury Lab Procedure 
+Manual</A>           <SPAN> (June 2018)</SPAN>         </P>
+<H2 id="Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality 
+Assurance and Monitoring</H2>
+<P>Whole blood samples are processed, stored, and shipped to the Division of 
+Laboratory Sciences, National Center for Environmental Health, Centers for 
+Disease Control and Prevention, Atlanta, GA for analysis. </P>
+<P>Detailed instructions on specimen collection and processing are discussed in 
+the <A href="http://adp-dhanes/Nchs/Edit/DocumentationList.aspx?Survey=NHANES&amp;BeginYear=2015">NHANES 
+Laboratory Procedures Manual (LPM)</A>. Vials are stored under appropriate 
+frozen (–30°C) conditions until they are shipped to National Center for 
+Environmental Health for testing. </P>
+<P>The NHANES quality assurance and quality control (QA/QC) protocols meet the 
+1988 Clinical Laboratory Improvement Act mandates. Detailed QA/QC instructions 
+are discussed in the <A href="http://adp-dhanes/Nchs/Edit/DocumentationList.aspx?Survey=NHANES&amp;BeginYear=2015">NHANES 
+LPM</A>. </P>
+<P><STRONG>Mobile Examination Centers (MECs) </STRONG><BR></P>
+<P>Laboratory team performance is monitored using several techniques. NCHS and 
+contract consultants use a structured competency assessment evaluation during 
+visits to evaluate both the quality of the laboratory work and the 
+quality-control procedures. Each laboratory staff member is observed for 
+equipment operation, specimen collection and preparation; testing procedures and 
+constructive feedback are given to each staff member. Formal retraining sessions 
+are conducted annually to ensure that required skill levels were maintained. 
+<BR><BR><STRONG>Analytical Laboratories </STRONG></P>
+<P>NHANES uses several methods to monitor the quality of the analyses performed 
+by the contract laboratories. In the MEC, these methods include performing blind 
+split samples collected on “dry run” sessions. In addition, contract 
+laboratories randomly perform repeat testing on 2% of all specimens. <BR><BR>
+ NCHS developed and distributed a quality control protocol for all the contract 
+laboratories, which outlined the use of Westgard rules (Westgard et al., 1981) 
+when running NHANES specimens. Progress reports containing any problems 
+encountered during shipping or receipt of specimens, summary statistics for each 
+control pool, QC graphs, instrument calibration, reagents, and any special 
+considerations are submitted to NCHS quarterly. The reports are reviewed for 
+trends or shifts in the data. The laboratories are required to explain any 
+identified areas of concern. <BR><BR> All QC procedures recommended by the 
+manufacturers were followed. Reported results for all assays meet the Division 
+of Laboratory Sciences’ quality control and quality assurance performance 
+criteria for accuracy and precision, similar to the Westgard rules Caudill, et 
+al., 2008).<BR></P>
+<H2 id="Data_Processing_and_Editing">Data Processing and Editing</H2>
+<P>The data were reviewed. Incomplete data or improbable values were sent to the 
+performing laboratory for confirmation. </P>
+<P>Three calculated variables were created in this data file. The formula for 
+their derivation is as follows: </P>
+<P>The inorganic mercury in µg/L was converted to nmol/L by multiplying by 4.99. 
+<BR> The ethyl mercury in µg/L was converted to nmol/L by multiplying by 4.99. 
+<BR> The methyl mercury in µg/L was converted to nmol/L by multiplying by 4.99. 
+</P>
+<H2 id="Analytic_Notes">Analytic Notes</H2>
+<P>Refer to the <A href="https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/overviewlab.aspx?BeginYear=2015">2015-2016 
+Laboratory Data Overview </A>for general information on NHANES laboratory 
+data.</P>
+<P><STRONG>Subsample Weights </STRONG><BR></P>
+<P>The appropriate sample weights are provided in the variable WTSH2YR in this 
+data file for all participants and should be used when analyzing these data. 
+</P>
+<P>The analytes included in the dataset were measured for all examined 
+participants aged 1-11 years, and in a one-half subsample of participants 12 
+years and older. For participants aged 1-11 years, their WTSH2YR are equivalent 
+to their MEC exam sample weights. These 1-11 year old participants have 
+completed at least one physical exam component in the MEC; therefore, they all 
+have an exam sample weight larger than “0,” regardless their lab test results. 
+For participants 12 years and older, special sample weights were created for the 
+subsample. These special weights accounted for the additional probability of 
+selection into the subsample, as well as the additional nonresponse to these lab 
+tests. Therefore, if a participant 12 years and older was selected as part of 
+the one-half subsample, but did not provide a blood specimen, he/she would have 
+the sample weight value assigned as “0” in his/her record. </P>
+<P><STRONG>Demographic and Other Related Variables </STRONG><BR></P>
+<P>The analysis of NHANES laboratory data must be conducted using the 
+appropriate survey design and demographic variables. The <A href="https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&amp;CycleBeginYear=2015">NHANES 
+2015-2016 Demographics File</A> contains demographic data, health indicators, 
+and other related information collected during household interviews as well as 
+the sample design variables. The recommended procedure for variance estimation 
+requires use of stratum and PSU variables (SDDMVSTRA and SDMVPSU, respectively) 
+in the demographic data file. <BR></P>
+<P>The <A href="https://wwwn.cdc.gov/nchs/nhanes/2015-2016/fastqx_i.htm">Fasting 
+Questionnaire File</A> includes auxiliary information, such as fasting status, 
+length of fast and the time of venipuncture. </P>
+<P>This laboratory data file can be linked to the other NHANES data files using 
+the unique survey participant identifier (i.e., SEQN). <BR></P>
+<P><STRONG>Detection Limits </STRONG><BR></P>
+<P>The detection limits were constant for all of the analytes in the data set. 
+Two variables are provided for each of these analytes. The variable name ending 
+“LC” (ex., LBXIHGLC) indicates whether the result was below the limit of 
+detection: the value “0” means that the result was at or above the limit of 
+detection, “1” indicates that the result was below the limit of detection.&nbsp; 
+For analytes with analytic results below the lower limit of detection (ex., 
+LBXIHGLC=1), an imputed fill value was placed in the analyte results field. This 
+value is the lower limit of detection divided by the square root of 2 
+(LLOD/sqrt[2]). The other variable prefixed LBX (ex., LBXIHG) provides the 
+analytic result for that analyte. </P>
+<P>The lower limit of detection (LLOD, in µg/L) for Inorganic, Ethyl and Methyl 
+Mercury: </P>
+<P></P>
+<TABLE bordercolor="#000000" border="1">
+  <THEAD>
+  <TR>
+    <TH>Variable Name</TH>
+    <TH>Item ID</TH>
+    <TH>LLOD</TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD>LBXIHG</TD>
+    <TD>Mercury, inorganic</TD>
+    <TD>0.27</TD></TR>
+  <TR>
+    <TD>LBXBGE</TD>
+    <TD>Mercury, ethyl</TD>
+    <TD>0.16</TD></TR>
+  <TR>
+    <TD>LBXBGM</TD>
+    <TD>Mercury, methyl</TD>
+    <TD>0.12</TD></TR></TBODY></TABLE>
+<P>Please refer to the NHANES <A href="https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">Analytic 
+Guidelines</A> and the on-line NHANES <A href="https://www.cdc.gov/nchs/tutorials/">Tutorial</A> 
+for further details on the use of sample weights and other analytic 
+issues.</P></DIV>
+<DIV id="References">
+<H2>References</H2>
+<UL>
+  <LI>Caudill, S.P., Schleicher, R.L., Pirkle, J.L. Multi-rule quality control 
+  for the age-related eye disease study. Statist. Med. (2008) 
+  27(20):4094-40106.</LI>
+  <LI>Westgard J.O., Barry P.L., Hunt M.R., Groth T. A multi-rule Shewhart chart 
+  for quality control in clinical chemistry. Clin Chem. 1981 Mar; 
+  27(3):493-501.</LI></UL></DIV>
+<DIV id="Codebook">
+<H2>Codebook and Frequencies</H2>
+<DIV class="pagebreak">
+<H3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</H3>
+<DL>
+  <DT>Variable Name: </DT>
+  <DD class="info">SEQN</DD>
+  <DT>SAS Label: </DT>
+  <DD>Respondent sequence number</DD>
+  <DT>English Text: </DT>
+  <DD class="info">Respondent sequence number.</DD>
+  <DT>Target: </DT>
+  <DD> Both males and females 1 YEARS -			150 YEARS</DD></DL></DIV>
+<DIV class="pagebreak">
+<H3 class="vartitle" id="WTSH2YR">WTSH2YR - Blood metal weights</H3>
+<DL>
+  <DT>Variable Name: </DT>
+  <DD class="info">WTSH2YR</DD>
+  <DT>SAS Label: </DT>
+  <DD>Blood metal weights</DD>
+  <DT>English Text: </DT>
+  <DD class="info">Blood metal weights</DD>
+  <DT>Target: </DT>
+  <DD> Both males and females 1 YEARS -			150 YEARS</DD></DL>
+<TABLE class="values">
+  <THEAD>
+  <TR>
+    <TH class="values" scope="column">Code or Value</TH>
+    <TH class="values" scope="column">Value Description</TH>
+    <TH class="values" scope="column">Count</TH>
+    <TH class="values" scope="column">Cumulative</TH>
+    <TH class="values" scope="column">Skip to Item</TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD class="values" scope="row">5099.649848 to 499733.23816</TD>
+    <TD class="values">Range of Values</TD>
+    <TD align="right" class="values">5597</TD>
+    <TD align="right" class="values">5597</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">0</TD>
+    <TD class="values">Participants 12+ years with no lab specimen</TD>
+    <TD align="right" class="values">218</TD>
+    <TD align="right" class="values">5815</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">.</TD>
+    <TD class="values">Missing</TD>
+    <TD align="right" class="values">0</TD>
+    <TD align="right" class="values">5815</TD>
+    <TD class="values"></TD></TR></TBODY></TABLE></DIV>
+<DIV class="pagebreak">
+<H3 class="vartitle" id="LBXIHG">LBXIHG - Mercury, inorganic (ug/L)</H3>
+<DL>
+  <DT>Variable Name: </DT>
+  <DD class="info">LBXIHG</DD>
+  <DT>SAS Label: </DT>
+  <DD>Mercury, inorganic (ug/L)</DD>
+  <DT>English Text: </DT>
+  <DD class="info">Inorganic mercury, blood (ug/L)</DD>
+  <DT>Target: </DT>
+  <DD> Both males and females 1 YEARS -			150 YEARS</DD></DL>
+<TABLE class="values">
+  <THEAD>
+  <TR>
+    <TH class="values" scope="column">Code or Value</TH>
+    <TH class="values" scope="column">Value Description</TH>
+    <TH class="values" scope="column">Count</TH>
+    <TH class="values" scope="column">Cumulative</TH>
+    <TH class="values" scope="column">Skip to Item</TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD class="values" scope="row">0.19 to 5.9</TD>
+    <TD class="values">Range of Values</TD>
+    <TD align="right" class="values">4938</TD>
+    <TD align="right" class="values">4938</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">.</TD>
+    <TD class="values">Missing</TD>
+    <TD align="right" class="values">877</TD>
+    <TD align="right" class="values">5815</TD>
+    <TD class="values"></TD></TR></TBODY></TABLE></DIV>
+<DIV class="pagebreak">
+<H3 class="vartitle" id="LBDIHGSI">LBDIHGSI - Mercury, inorganic (umol/L)</H3>
+<DL>
+  <DT>Variable Name: </DT>
+  <DD class="info">LBDIHGSI</DD>
+  <DT>SAS Label: </DT>
+  <DD>Mercury, inorganic (umol/L)</DD>
+  <DT>English Text: </DT>
+  <DD class="info">Mercury, inorganic (umol/L)</DD>
+  <DT>Target: </DT>
+  <DD> Both males and females 1 YEARS -			150 YEARS</DD></DL>
+<TABLE class="values">
+  <THEAD>
+  <TR>
+    <TH class="values" scope="column">Code or Value</TH>
+    <TH class="values" scope="column">Value Description</TH>
+    <TH class="values" scope="column">Count</TH>
+    <TH class="values" scope="column">Cumulative</TH>
+    <TH class="values" scope="column">Skip to Item</TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD class="values" scope="row">0.95 to 29.44</TD>
+    <TD class="values">Range of Values</TD>
+    <TD align="right" class="values">4938</TD>
+    <TD align="right" class="values">4938</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">.</TD>
+    <TD class="values">Missing</TD>
+    <TD align="right" class="values">877</TD>
+    <TD align="right" class="values">5815</TD>
+    <TD class="values"></TD></TR></TBODY></TABLE></DIV>
+<DIV class="pagebreak">
+<H3 class="vartitle" id="LBDIHGLC">LBDIHGLC - Mercury, inorganic comment 
+code</H3>
+<DL>
+  <DT>Variable Name: </DT>
+  <DD class="info">LBDIHGLC</DD>
+  <DT>SAS Label: </DT>
+  <DD>Mercury, inorganic comment code</DD>
+  <DT>English Text: </DT>
+  <DD class="info">Mercury, inorganic comment code</DD>
+  <DT>Target: </DT>
+  <DD> Both males and females 1 YEARS -			150 YEARS</DD></DL>
+<TABLE class="values">
+  <THEAD>
+  <TR>
+    <TH class="values" scope="column">Code or Value</TH>
+    <TH class="values" scope="column">Value Description</TH>
+    <TH class="values" scope="column">Count</TH>
+    <TH class="values" scope="column">Cumulative</TH>
+    <TH class="values" scope="column">Skip to Item</TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD class="values" scope="row">0</TD>
+    <TD class="values">At or above the detection limit</TD>
+    <TD align="right" class="values">736</TD>
+    <TD align="right" class="values">736</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">1</TD>
+    <TD class="values">Below lower detection limit</TD>
+    <TD align="right" class="values">4202</TD>
+    <TD align="right" class="values">4938</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">.</TD>
+    <TD class="values">Missing</TD>
+    <TD align="right" class="values">877</TD>
+    <TD align="right" class="values">5815</TD>
+    <TD class="values"></TD></TR></TBODY></TABLE></DIV>
+<DIV class="pagebreak">
+<H3 class="vartitle" id="LBXBGE">LBXBGE - Mercury, ethyl (ug/L)</H3>
+<DL>
+  <DT>Variable Name: </DT>
+  <DD class="info">LBXBGE</DD>
+  <DT>SAS Label: </DT>
+  <DD>Mercury, ethyl (ug/L)</DD>
+  <DT>English Text: </DT>
+  <DD class="info">Mercury, ethyl (ug/L)</DD>
+  <DT>Target: </DT>
+  <DD> Both males and females 1 YEARS -			150 YEARS</DD></DL>
+<TABLE class="values">
+  <THEAD>
+  <TR>
+    <TH class="values" scope="column">Code or Value</TH>
+    <TH class="values" scope="column">Value Description</TH>
+    <TH class="values" scope="column">Count</TH>
+    <TH class="values" scope="column">Cumulative</TH>
+    <TH class="values" scope="column">Skip to Item</TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD class="values" scope="row">0.11 to 0.5</TD>
+    <TD class="values">Range of Values</TD>
+    <TD align="right" class="values">4936</TD>
+    <TD align="right" class="values">4936</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">.</TD>
+    <TD class="values">Missing</TD>
+    <TD align="right" class="values">879</TD>
+    <TD align="right" class="values">5815</TD>
+    <TD class="values"></TD></TR></TBODY></TABLE></DIV>
+<DIV class="pagebreak">
+<H3 class="vartitle" id="LBDBGELC">LBDBGELC - Mercury, ethyl comment code</H3>
+<DL>
+  <DT>Variable Name: </DT>
+  <DD class="info">LBDBGELC</DD>
+  <DT>SAS Label: </DT>
+  <DD>Mercury, ethyl comment code</DD>
+  <DT>English Text: </DT>
+  <DD class="info">Mercury, ethyl comment code</DD>
+  <DT>Target: </DT>
+  <DD> Both males and females 1 YEARS -			150 YEARS</DD></DL>
+<TABLE class="values">
+  <THEAD>
+  <TR>
+    <TH class="values" scope="column">Code or Value</TH>
+    <TH class="values" scope="column">Value Description</TH>
+    <TH class="values" scope="column">Count</TH>
+    <TH class="values" scope="column">Cumulative</TH>
+    <TH class="values" scope="column">Skip to Item</TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD class="values" scope="row">0</TD>
+    <TD class="values">At or above the detection limit</TD>
+    <TD align="right" class="values">53</TD>
+    <TD align="right" class="values">53</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">1</TD>
+    <TD class="values">Below lower detection limit</TD>
+    <TD align="right" class="values">4883</TD>
+    <TD align="right" class="values">4936</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">.</TD>
+    <TD class="values">Missing</TD>
+    <TD align="right" class="values">879</TD>
+    <TD align="right" class="values">5815</TD>
+    <TD class="values"></TD></TR></TBODY></TABLE></DIV>
+<DIV class="pagebreak">
+<H3 class="vartitle" id="LBXBGM">LBXBGM - Mercury, methyl (ug/L)</H3>
+<DL>
+  <DT>Variable Name: </DT>
+  <DD class="info">LBXBGM</DD>
+  <DT>SAS Label: </DT>
+  <DD>Mercury, methyl (ug/L)</DD>
+  <DT>English Text: </DT>
+  <DD class="info">Mercury, methyl (ug/L)	</DD>
+  <DT>Target: </DT>
+  <DD> Both males and females 1 YEARS -			150 YEARS</DD></DL>
+<TABLE class="values">
+  <THEAD>
+  <TR>
+    <TH class="values" scope="column">Code or Value</TH>
+    <TH class="values" scope="column">Value Description</TH>
+    <TH class="values" scope="column">Count</TH>
+    <TH class="values" scope="column">Cumulative</TH>
+    <TH class="values" scope="column">Skip to Item</TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD class="values" scope="row">0.08 to 39.45</TD>
+    <TD class="values">Range of Values</TD>
+    <TD align="right" class="values">4938</TD>
+    <TD align="right" class="values">4938</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">.</TD>
+    <TD class="values">Missing</TD>
+    <TD align="right" class="values">877</TD>
+    <TD align="right" class="values">5815</TD>
+    <TD class="values"></TD></TR></TBODY></TABLE></DIV>
+<DIV class="pagebreak">
+<H3 class="vartitle" id="LBDBGMLC">LBDBGMLC - Mercury, methyl comment code</H3>
+<DL>
+  <DT>Variable Name: </DT>
+  <DD class="info">LBDBGMLC</DD>
+  <DT>SAS Label: </DT>
+  <DD>Mercury, methyl comment code</DD>
+  <DT>English Text: </DT>
+  <DD class="info">Mercury, methyl comment code</DD>
+  <DT>Target: </DT>
+  <DD> Both males and females 1 YEARS -			150 YEARS</DD></DL>
+<TABLE class="values">
+  <THEAD>
+  <TR>
+    <TH class="values" scope="column">Code or Value</TH>
+    <TH class="values" scope="column">Value Description</TH>
+    <TH class="values" scope="column">Count</TH>
+    <TH class="values" scope="column">Cumulative</TH>
+    <TH class="values" scope="column">Skip to Item</TH></TR></THEAD>
+  <TBODY>
+  <TR>
+    <TD class="values" scope="row">0</TD>
+    <TD class="values">At or above the detection limit</TD>
+    <TD align="right" class="values">3595</TD>
+    <TD align="right" class="values">3595</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">1</TD>
+    <TD class="values">Below lower detection limit</TD>
+    <TD align="right" class="values">1343</TD>
+    <TD align="right" class="values">4938</TD>
+    <TD class="values"></TD></TR>
+  <TR>
+    <TD class="values" scope="row">.</TD>
+    <TD class="values">Missing</TD>
+    <TD align="right" class="values">877</TD>
+    <TD align="right" class="values">5815</TD>
+    <TD class="values"></TD></TR></TBODY></TABLE></DIV></DIV></DIV></BODY></HTML>

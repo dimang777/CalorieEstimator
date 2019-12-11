@@ -1,0 +1,818 @@
+<!DOCTYPE html><html xml:lang="en" lang="en" xmlns="http://www.w3c.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>SSMHHT_I</title>
+    <meta name="title" content="NHANES 2015-2016: Mono-2-ethyl-5-hydroxyhexyl terephthalate, mono-2-ethyl-5-carboxypentyl terephthalate, and monooxoisononyl phthalate - Urine (Surplus) Data Documentation, Codebook, and Frequencies" />
+    <style type="text/css">
+					.nhanes-doc { font: 75% Verdana, Arial, Helvetica, sans-serif; }
+
+					.nhanes-doc h1 {
+					color: #0c5205;
+					font-family: "Trebuchet MS", Arial, sans-serif;
+					font-size: 2em;
+					font-weight: normal;
+					margin-bottom: 10px;
+					margin-top: 0;
+					}
+
+					.nhanes-doc h2 {
+					color: #0c5205;
+					font-family: "Trebuchet MS", Arial, sans-serif;
+					font-size: 1.6em;
+					font-weight: normal;
+					}
+
+					.nhanes-doc h3 {
+					color: #000;
+					font-family: "Trebuchet MS", Arial, sans-serif;
+					font-size: 1.5em;
+					font-weight: normal;
+					}
+
+					.nhanes-doc h3.vartitle {
+					background-color: #c1d5b0;
+					padding: 6px 12px;
+					}
+
+					.nhanes-doc h4 {
+					color: #000;
+					font-family: "Trebuchet MS", Arial, sans-serif;
+					font-size: 1.3em;
+					font-weight: bold;
+					}
+
+					.nhanes-doc h5 {
+					color: #000;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					font-size: 1em;
+					font-weight: bold;
+					}
+
+					.nhanes-doc h5.specialnote {
+					color: #000;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					font-size: 1.2em;
+					font-style: italic;
+					font-weight: bold;
+					}
+
+					.nhanes-doc a {
+					color: #039;
+					text-decoration: none;
+					}
+
+					.nhanes-doc p {
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					font-size: 1em;
+					line-height: 1.33em;
+					margin: 0 3em 1em;
+					padding: 0;
+					text-align: left;
+					}
+
+					.nhanes-doc ul {
+					list-style-type: disc;
+					margin: 0 3em 1em;
+					padding: 0;
+					}
+
+					.nhanes-doc ol {
+					list-style-type: decimal;
+					margin: 0;
+					overflow: hidden;
+					padding: 0;
+					padding-left: 2em;
+					}
+
+					.nhanes-doc li {
+					margin-left: 1.5em;
+					margin-top: 0.7em;
+					}
+
+					.nhanes-doc table {
+					border: #000 1px solid;
+					border-collapse: collapse;
+					margin: 0 auto 1em;
+					max-width: 600px;
+					padding: 2px;
+					page-break-inside: avoid;
+					table-layout: auto;
+					}
+
+					.nhanes-doc th {
+					background: #f4f4e1;
+					border: #000 1px solid;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					padding: 5px;
+					text-align: center;
+					vertical-align: top;
+					}
+
+					.nhanes-doc th.rowheader {
+					background: #f4f4e1;
+					border: #000 1px solid;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					padding: 5px;
+					text-align: center;
+					vertical-align: top;
+					}
+
+					.nhanes-doc td {
+					border: #000 1px solid;
+					font-family: Verdana, Arial, Helvetica, sans-serif;
+					padding: 5px;
+					text-align: left;
+					vertical-align: top;
+					}
+
+					.nhanes-doc td.values2 {
+					text-align: RIGHT;
+					vertical-align: top;
+					}
+
+					.nhanes-doc table caption {
+					font-weight: bold;
+					padding-bottom: 0.5em;
+					}
+
+					.nhanes-doc div#wrapper { width: 650px; }
+
+					.nhanes-doc div#toc {
+					border: solid 1px #CCC;
+					float: left;
+					height: 95%;
+					left: 750px;
+					overflow: hidden;
+					position: fixed;
+					top: 10px;
+					width: 400px;
+					z-index: 10;
+					}
+
+					.nhanes-doc div#toc h3 {
+					background-color: #f4f4e1;
+					border-bottom: solid 1px #ccc;
+					letter-spacing: 8px;
+					margin: 0;
+					padding: 8px;
+					text-align: center;
+					text-transform: uppercase;
+					}
+
+					.nhanes-doc div#toc-scroll {
+					height: calc(100% - 1.5em);
+					overflow: scroll;
+					width: 100%;
+					}
+
+					.nhanes-doc div#toc li {
+					margin-left: -0.5em;
+					margin-right: -0.5em;
+					}
+
+					.nhanes-doc div#PageHeader {
+					border-bottom: thin solid #999;
+					margin-bottom: 12px;
+					width: 650px;
+					}
+
+					.nhanes-doc div#Sections { width: 650px; }
+
+					.nhanes-doc div#Codebook { width: 650px; }
+
+					.nhanes-doc div#Codebook dl {
+					margin: 2em 0 10px 40px;
+					padding: 0;
+					width: 600px;
+					display: table;
+					}
+
+					.nhanes-doc div#Codebook dt {
+					float: left;
+					font-weight: bold;
+					margin: 0;
+					padding: 0.5em;
+					width: 150px;
+					display: table-cell;
+					}
+
+					.nhanes-doc div#Codebook dd {
+					float: left;
+					margin: 0;
+					padding: 0.5em;
+					width: 420px;
+					display: table-cell;
+					}
+
+					.nhanes-doc div#References {
+					page-break-after: always;
+					width: 650px;
+					}
+
+					.nhanes-doc div#Appendix {
+					page-break-after: always;
+					width: 650px;
+					}
+
+					.nhanes-doc table.values {
+					border: 2px;
+					left: 20px;
+					margin-bottom: 20px;
+					page-break-inside: avoid;
+					position: relative;
+					width: 600px;
+					}
+
+					.nhanes-doc span.file-size { color: gray; }
+
+					.nhanes-doc .pagebreak {
+					background-color: transparent;
+					display: block;
+					page-break-after: always;
+					page-break-inside: avoid;
+					}
+				</style>
+    <style type="text/css" media="print">
+					.nhanes-doc div#toc { display: none; }
+				</style>
+  </head>
+  <body class="nhanes-doc">
+    <div id="toc">
+      <h3>Table of Contents</h3>
+      <div id="toc-scroll">
+        <ul>
+          <li>
+            <a href="#Component_Description">Component Description</a>
+          </li>
+          <li>
+            <a href="#Eligible_Sample">Eligible Sample</a>
+          </li>
+          <li>
+            <a href="#Description_of_Laboratory_Methodology">Description of Laboratory Methodology</a>
+          </li>
+          <li>
+            <a href="#Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</a>
+          </li>
+          <li>
+            <a href="#Data_Processing_and_Editing">Data Processing and Editing</a>
+          </li>
+          <li>
+            <a href="#Analytic_Notes">Analytic Notes</a>
+          </li>
+          <li>
+            <a href="#References">References</a>
+          </li>
+          <li>
+            <a href="#Codebook">Codebook</a>
+            <ul id="CodebookLinks">
+              <li>
+                <a href="#SEQN">SEQN - Respondent sequence number</a>
+              </li>
+              <li>
+                <a href="#WTSB2YR">WTSB2YR - Subsample B weights</a>
+              </li>
+              <li>
+                <a href="#SSMHHT">SSMHHT - Mono2ethyl5hydroxyhexyl terephth (ug/L)</a>
+              </li>
+              <li>
+                <a href="#SSMHHTL">SSMHHTL - Mono2ethy-5hydroxyhexyl terephth cmt cd</a>
+              </li>
+              <li>
+                <a href="#SSECPT">SSECPT - Mono2ethyl5carboxypentyl terephth (ug/L)</a>
+              </li>
+              <li>
+                <a href="#SSECPTL">SSECPTL - Mono2ethyl5carboxypentyl terephth cmt cd</a>
+              </li>
+              <li>
+                <a href="#SSMONP">SSMONP - Monooxoisononyl phthalate (ug/L)</a>
+              </li>
+              <li>
+                <a href="#SSMONPL">SSMONPL - Monooxoisononyl phthalate cmt cd</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <div id="PageHeader">
+        <h1>National Health and Nutrition Examination Survey</h1>
+        <h2>2015-2016 Data Documentation, Codebook, and Frequencies</h2>
+        <h3>Mono-2-ethyl-5-hydroxyhexyl terephthalate, mono-2-ethyl-5-carboxypentyl terephthalate, and monooxoisononyl phthalate - Urine (Surplus) (SSMHHT_I)</h3>
+        <h4> Data File: SSMHHT_I.xpt</h4>
+        <h5 class="left">First Published: September 2018</h5>
+        <h5 class="right">Last Revised: NA</h5>
+      </div>
+      <div id="Sections">
+        <h2 id="Component_Description">Component Description</h2><p style="margin: 0in 0in 8pt 0.5in; line-height: 15pt; mso-line-height-rule: exactly;">Since 1999, CDC has measured phthalate metabolites in
+human urine to assess exposure to phthalates (CDC 2017). Di-2-ethylhexyl
+phthalate (DEHP) is a commonly used plasticizer. The use of DEHP in the U.S.
+market appears to be decreasing, at least in part because of legislative
+efforts, while the use of di-isononyl phthalate (DiNP), one of the replacements
+of DEHP, and other phthalate alternatives, may be rising (Calafat et al.
+2011;Zota et al. 2014). &nbsp;Di-2-ethylhexyl terephthalate (DEHTP), a
+structural isomer of DEHP and one of such alternatives, has been used as a
+plasticizer for polymers contained in consumer products (Beeler 1976).&nbsp; To
+better understand exposure to phthalates alternatives, we quantified
+mono-2-ethyl-5-hydroxyhexyl terephthalate (MEHHTP),
+mono-2-ethyl-5-carboxypentyl terephthalate (MECPTP), two metabolites of DEHTP,
+and monooxoisononyl phthalate (MONP), an additional metabolite of DiNP, in one
+third subsample of participants 3+ years of age from NHANES 2015-2016.&nbsp; <br />
+</p><h2 id="Eligible_Sample">Eligible Sample</h2><p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">All participants aged
+3-5 years old and an one-third sample of participants aged 6 and older from
+NHANES 2015-2016 with stored urine.<br />
+</p><h2 id="Description_of_Laboratory_Methodology">Description of Laboratory Methodology</h2><p style="margin: 0in 0in 8pt 0.5in; line-height: 15pt; mso-line-height-rule: exactly;">We measured urinary MEHHTP, MECPTP and MONP by an on-line
+solid phase extraction coupled with isotope dilution-high performance liquid
+chromatography tandem mass spectrometry approach previously described (Silva et
+al. 2013).</p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">Refer to the
+Laboratory Method Files section for detailed laboratory procedure manual(s) of
+the methods used. </p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">There were no
+changes to the lab equipment or lab site for this component compared with those
+used for measuring other phthalates and DINCH metabolites in the same one-third
+subsample of participants 3 years of age and older in NHANES 2015-2016. If the
+concentration of a metabolite was less than the limit of detection (LOD), then
+the imputed value was used. The imputed value was calculated as the LOD divided
+by the square root of 2 (Hornung and Reed 1990); imputed values are provided in
+the NHANES public release file. <br />
+</p><h2 id="Laboratory_Quality_Assurance_and_Monitoring">Laboratory Quality Assurance and Monitoring</h2><p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">The analytical
+measurements were conducted following strict quality control/quality assurance
+CLIA guidelines. Along with the study samples, each analytical run included
+high- and low-concentration quality control materials (QCs) and reagent blanks
+to assure the accuracy and reliability of the data. The concentrations of the
+high-concentration QCs and the low-concentration QCs, averaged to obtain one
+measurement of high-concentration QC and low-concentration QC for each run,
+were evaluated using standard statistical probability rules (Caudill et al.
+2008).<br />
+</p><h2 id="Data_Processing_and_Editing">Data Processing and Editing</h2><p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">Data were received
+after all analyses were complete. The data were not edited.</p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">Data Access: All
+data are publicly available.<br />
+</p><h2 id="Analytic_Notes">Analytic Notes</h2><p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">Refer to the
+2015-2016 <a href="mhtml:file://adp-dhanes/delivery/2015-2016/lab/SSMHHT_I/SSMHHT_I.mht!https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/overviewlab.aspx?BeginYear=2015">Laboratory Data
+Overview </a>for general information on NHANES laboratory data.</p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;"><b>Subsample weights</b></p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">MEHHTP, MECPTP,
+and MONP were measured in all persons 3-5 years of age and in a one-third
+subsample for persons 6 years of age and older. Special sample weights,
+included in this data file, are required to analyze these data properly.</p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;"><b>Demographic and
+Other Related Variables</b></p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">The analysis of
+NHANES laboratory data must be conducted with the key survey design and basic
+demographic variables. The <a href="mhtml:file://adp-dhanes/delivery/2015-2016/lab/SSMHHT_I/SSMHHT_I.mht!https://wwwn.cdc.gov/nchs/nhanes/search/datapage.aspx?Component=Demographics&amp;CycleBeginYear=2015">NHANES 2015-2016
+Demographic Data File </a>contains
+demographic data, health indicators, and other related information collected
+during household interviews as well as the sample design variables. The
+recommended procedure for variance estimation requires use of stratum and PSU
+variables (SDMVSTRA and SDMVPSU, respectively) in the demographic data file. </p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">This laboratory
+data file can be linked to other NHANES data files using the unique survey participant
+identifier (i.e., SEQN). </p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;"><b>Detection Limits</b></p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">Detection limits
+were constant for all of the analytes in the data set. Two variables are
+provided for each analyte. </p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">The variable name
+ending in &ldquo;L&rdquo; (ex., SSMHHTL) indicates whether the result was below the limit
+of detection: the value &ldquo;0&rdquo; means that the result was at or above the limit of
+detection, &ldquo;1&rdquo; indicates that the result was below the limit of detection. For analytes
+with analytic results below the lower limit of detection (ex., SSMHHTL=1), an
+imputed fill value was placed in the analyte results field. This value is the
+lower limit of detection divided by square root of 2 (LLOD/sqrt). The other
+variable prefixed SS (ex., SSMHHT) provides the analytic result for that
+analyte. </p>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">The lower limit of
+detection (LLOD, in ng/mL) for MEHHTP, MECPTP, and MONP are:</p>
+<table style="margin: auto auto auto 35.6pt; border: currentColor; border-image: none; border-collapse: collapse; mso-border-alt: solid black .75pt; mso-yfti-tbllook: 1184; mso-padding-alt: 1.5pt 1.5pt 1.5pt 1.5pt;" border="1" cellspacing="0" cellpadding="0">
+    <tbody>
+        <tr style="mso-yfti-irow: 0; mso-yfti-firstrow: yes;">
+            <td valign="top" style="padding: 3.75pt; border: 1pt solid black; border-image: none; width: 99.25pt; background-color: transparent; mso-border-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;"><b>Variable Name</b></p>
+            </td>
+            <td valign="top" style="border-width: 1pt 1pt 1pt 0px; border-style: solid solid solid none; border-color: black black black #000000; padding: 3.75pt; border-image: none; width: 249.25pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-left-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;"><b>SAS Label&nbsp;</b></p>
+            </td>
+            <td valign="top" style="border-width: 1pt 1pt 1pt 0px; border-style: solid solid solid none; border-color: black black black #000000; padding: 3.75pt; border-image: none; width: 61pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-left-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;"><b>LLOD&nbsp;</b></p>
+            </td>
+        </tr>
+        <tr style="height: 30.15pt; mso-yfti-irow: 1;">
+            <td valign="top" style="border-width: 0px 1pt 1pt; border-style: none solid solid; border-color: #000000 black black; padding: 3.75pt; border-image: none; width: 99.25pt; height: 30.15pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-top-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;">SSMHHT</p>
+            </td>
+            <td valign="top" style="border-width: 0px 1pt 1pt 0px; border-style: none solid solid none; border-color: #000000 black black #000000; padding: 3.75pt; width: 249.25pt; height: 30.15pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-left-alt: solid black .75pt; mso-border-top-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;">Mono-2-ethyl-5-hydroxyhexyl
+            terephthalate (&micro;g/L)</p>
+            </td>
+            <td valign="top" style="border-width: 0px 1pt 1pt 0px; border-style: none solid solid none; border-color: #000000 black black #000000; padding: 3.75pt; width: 61pt; height: 30.15pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-left-alt: solid black .75pt; mso-border-top-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;">0.4</p>
+            </td>
+        </tr>
+        <tr style="mso-yfti-irow: 2;">
+            <td valign="top" style="border-width: 0px 1pt 1pt; border-style: none solid solid; border-color: #000000 black black; padding: 3.75pt; border-image: none; width: 99.25pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-top-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;">SSECPT</p>
+            </td>
+            <td valign="top" style="border-width: 0px 1pt 1pt 0px; border-style: none solid solid none; border-color: #000000 black black #000000; padding: 3.75pt; width: 249.25pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-left-alt: solid black .75pt; mso-border-top-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;">Mono-2-ethyl-5-carboxypentyl
+            terephthalate (&micro;g/L)</p>
+            </td>
+            <td valign="top" style="border-width: 0px 1pt 1pt 0px; border-style: none solid solid none; border-color: #000000 black black #000000; padding: 3.75pt; width: 61pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-left-alt: solid black .75pt; mso-border-top-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;">0.2</p>
+            </td>
+        </tr>
+        <tr style="mso-yfti-irow: 3; mso-yfti-lastrow: yes;">
+            <td valign="top" style="border-width: 0px 1pt 1pt; border-style: none solid solid; border-color: #000000 black black; padding: 3.75pt; border-image: none; width: 99.25pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-top-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;">SSMONP</p>
+            </td>
+            <td valign="top" style="border-width: 0px 1pt 1pt 0px; border-style: none solid solid none; border-color: #000000 black black #000000; padding: 3.75pt; width: 249.25pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-left-alt: solid black .75pt; mso-border-top-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;">Monooxoisononyl phthalate&nbsp;
+            (&micro;g/L)</p>
+            </td>
+            <td valign="top" style="border-width: 0px 1pt 1pt 0px; border-style: none solid solid none; border-color: #000000 black black #000000; padding: 3.75pt; width: 61pt; background-color: transparent; mso-border-alt: solid black .75pt; mso-border-left-alt: solid black .75pt; mso-border-top-alt: solid black .75pt;">
+            <p style="margin: 0in 0in 12pt 0.5in; line-height: normal;">0.4</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p style="margin: 0in 0.5in 12pt; line-height: 15.95pt;">Please refer to
+the NHANES <a href="mhtml:file://adp-dhanes/delivery/2015-2016/lab/SSMHHT_I/SSMHHT_I.mht!https://wwwn.cdc.gov/nchs/nhanes/analyticguidelines.aspx">Analytic
+Guidelines </a>and the on-line NHANES <a href="mhtml:file://adp-dhanes/delivery/2015-2016/lab/SSMHHT_I/SSMHHT_I.mht!https://www.cdc.gov/nchs/tutorials/">Tutorial</a> for further details on the use of sample weights and other analytic
+issues.<br />
+</p></div>
+      <div id="References">
+        <h2>References</h2>
+        <ul>
+          <li>Beeler AD. 1976. New Terephthalate Plasticizers for PVC.
+Plastics Engineering 32: 40-41.
+<br /></li>
+          <li>Calafat AM, Wong LY, Silva MJ, Samandar E, Preau JL, Jia LT,
+et al. 2011. Selecting Adequate Exposure Biomarkers of Diisononyl and
+Diisodecyl Phthalates: Data from the 2005-2006 National Health and Nutrition Examination
+Survey. Environ Health Perspect 119: 50-55.</li>
+          <li>Caudill SP, Schleicher RL, Pirkle JL. 2008. Multi-rule
+quality control for the age-related eye disease study. Statist Med 27:
+4094-4106.
+<br /></li>
+          <li>CDC. 2017. Fourth National Report on Human Exposure to Environmental
+Chemicals, updated Tables, January, 2017 <span style="font-family: Calibri;">. In:&nbsp; Atlanta, GA:Centers for Disease Control and
+Prevention; National Center for Environmental Health; Division of Laboratory
+Sciences.</span>
+<br /></li>
+          <li>Hornung RW, Reed LD. 1990. Estimation of average
+concentration in the presence of nondetectable values. Appl Occup Environ Hyg
+5: 46-51.<br /></li>
+          <li>Silva MJ, Jia T, Samandar E, Preau JL, Calafat AM. 2013.
+Environmental exposure to the plasticizer 1,2-cyclohexane dicarboxylic acid,
+diisononyl ester (DINCH) in US adults (2000-2012). Environ Res 126: 159-163.<br /></li>
+          <li>Zota AR, Calafat AM, Woodruff TJ. 2014. Temporal
+Trends in Phthalate Exposures: Findings from the National Health and Nutrition
+Examination Survey, 2001-2010. Environ Health Perspect 122: 235-241.<br /></li>
+        </ul>
+      </div>
+      <div id="Codebook">
+        <h2>Codebook and Frequencies</h2>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SEQN">SEQN - Respondent sequence number</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SEQN</dd>
+            <dt>SAS Label: </dt>
+            <dd>Respondent sequence number</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Respondent sequence number.</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="WTSB2YR">WTSB2YR - Subsample B weights</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">WTSB2YR</dd>
+            <dt>SAS Label: </dt>
+            <dd>Subsample B weights</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Subsample B weights</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0 to 874638.01159</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2971</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SSMHHT">SSMHHT - Mono2ethyl5hydroxyhexyl terephth (ug/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SSMHHT</dd>
+            <dt>SAS Label: </dt>
+            <dd>Mono2ethyl5hydroxyhexyl terephth (ug/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Mono2ethyl5hydroxyhexyl terephth (ug/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.3 to 876.6</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2971</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SSMHHTL">SSMHHTL - Mono2ethy-5hydroxyhexyl terephth cmt cd</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SSMHHTL</dd>
+            <dt>SAS Label: </dt>
+            <dd>Mono2ethy-5hydroxyhexyl terephth cmt cd</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Mono2ethy-5hydroxyhexyl terephth cmt cd</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">2857</td>
+                <td class="values" align="right">2857</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">114</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SSECPT">SSECPT - Mono2ethyl5carboxypentyl terephth (ug/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SSECPT</dd>
+            <dt>SAS Label: </dt>
+            <dd>Mono2ethyl5carboxypentyl terephth (ug/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Mono2ethyl5carboxypentyl terephth (ug/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.1 to 4312</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2971</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SSECPTL">SSECPTL - Mono2ethyl5carboxypentyl terephth cmt cd</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SSECPTL</dd>
+            <dt>SAS Label: </dt>
+            <dd>Mono2ethyl5carboxypentyl terephth cmt cd</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Mono2ethyl5carboxypentyl terephth cmt cd</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">2969</td>
+                <td class="values" align="right">2969</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">2</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SSMONP">SSMONP - Monooxoisononyl phthalate (ug/L)</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SSMONP</dd>
+            <dt>SAS Label: </dt>
+            <dd>Monooxoisononyl phthalate (ug/L)</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Monooxoisononyl phthalate (ug/L)</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0.3 to 727.1</td>
+                <td class="values">Range of Values</td>
+                <td class="values" align="right">2971</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagebreak">
+          <h3 class="vartitle" id="SSMONPL">SSMONPL - Monooxoisononyl phthalate cmt cd</h3>
+          <dl>
+            <dt>Variable Name: </dt>
+            <dd class="info">SSMONPL</dd>
+            <dt>SAS Label: </dt>
+            <dd>Monooxoisononyl phthalate cmt cd</dd>
+            <dt>English Text: </dt>
+            <dd class="info">Monooxoisononyl phthalate cmt cd</dd>
+            <dt>Target: </dt>
+            <dd> Both males and females 3 YEARS -
+			150 YEARS</dd>
+          </dl>
+          <table class="values">
+            <thead>
+              <tr>
+                <th scope="column" class="values">Code or Value</th>
+                <th scope="column" class="values">Value Description</th>
+                <th scope="column" class="values">Count</th>
+                <th scope="column" class="values">Cumulative</th>
+                <th scope="column" class="values">Skip to Item</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row" class="values">0</td>
+                <td class="values">At or above the detection limit</td>
+                <td class="values" align="right">2779</td>
+                <td class="values" align="right">2779</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">1</td>
+                <td class="values">Below lower detection limit</td>
+                <td class="values" align="right">192</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+              <tr>
+                <td scope="row" class="values">.</td>
+                <td class="values">Missing</td>
+                <td class="values" align="right">0</td>
+                <td class="values" align="right">2971</td>
+                <td class="values">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

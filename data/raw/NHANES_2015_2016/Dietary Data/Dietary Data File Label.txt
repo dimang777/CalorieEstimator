@@ -1,0 +1,6 @@
+Data File Name	Doc File	Data File	Date Published
+Dietary Interview - Individual Foods, First Day	DR1IFF_I Doc 	DR1IFF_I Data [XPT - 77.9 MB] 	July 2018
+Dietary Interview - Individual Foods, Second Day	DR2IFF_I Doc 	DR2IFF_I Data [XPT - 64.5 MB] 	July 2018
+Dietary Interview - Total Nutrient Intakes, First Day	DR1TOT_I Doc 	DR1TOT_I Data [XPT - 12.3 MB] 	July 2018
+Dietary Interview - Total Nutrient Intakes, Second Day	DR2TOT_I Doc 	DR2TOT_I Data [XPT - 6.2 MB] 	July 2018
+Dietary Interview Technical Support File - Food Codes	DRXFCD_I Doc 	DRXFCD_I Data [XPT - 2.1 MB] 	July 2018 

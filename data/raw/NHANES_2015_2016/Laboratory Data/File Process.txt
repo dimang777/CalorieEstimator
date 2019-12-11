@@ -1,0 +1,850 @@
+Not used files
+FASTQX_I
+HEPC_I 
+HIV_I
+UCFLOW_I 
+
+template
+Variables to remove
+
+Filter variables
+
+Change to nan variables
+
+
+
+File memos
+ALB_CR_I
+Variables to remove
+URDUMALC
+URDUCRLC
+URXCRS
+URXUMS
+Filter variables
+None
+Change to nan variables
+None
+
+
+APOB_I
+Variables to remove
+LBDAPBSI
+Filter variables
+None
+Change to nan variables
+WTSAF2YR - 0 to nan - 2nd col
+
+UADM_I
+Variables to remove
+URD4DALC
+URD6DALC
+URD4MALC
+URD5NALC
+URDPDALC
+Filter variables
+None
+Change to nan variables
+WTSA2YR - 0 to nan -  2nd col
+
+UTASS_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+WTFSM - 0 to nan -  2nd col
+
+UTAS_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+WTSA2YR- 0 to nan -  2nd col
+
+PBCD_I
+Variables to remove
+LBDBPBSI
+LBDBPBLC
+LBDBCDSI
+LBDBCDLC
+LBDTHGSI
+LBDTHGLC
+LBDBSESI
+LBDBSELC
+LBDBMNSI
+LBDBMNLC
+Filter variables
+None
+Change to nan variables
+WTSH2YR - 0 to nan -  2nd col
+
+
+IHGEM_I
+Variables to remove
+LBDIHGSI
+LBDIHGLC
+LBDBGELC
+LBDBGMLC
+Filter variables
+None
+Change to nan variables
+WTSH2YR - 0 to nan -  2nd col
+
+CHLMDA_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+URXUCL - only available variable
+
+HDL_I
+Variables to remove
+LBDHDDSI
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+TRIGLY_I
+Variables to remove
+LBDTRSI
+LBDLDLSI
+Filter variables
+None
+Change to nan variables
+WTSAF2YR - 0 to nan -  2nd col
+Binary variable
+None
+
+TCHOL_I
+Variables to remove
+LBDTCSI
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+CRCO_I
+Variables to remove
+LBDBCRSI
+LBDBCRLC
+LBDBCOSI
+LBDBCOLC
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+CBC_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+CUSEZN_I
+Variables to remove
+LBDSCUSI
+LBDSSESI
+LBDSZNSI
+Filter variables
+None
+Change to nan variables
+WTSA2YR - 0 to nan -  2nd col
+Binary variable
+None
+
+COT_I
+Variables to remove
+LBDCOTLC
+LBDHCTLC
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+FASTQX_I - Do not use
+
+FERTIN_I
+Variables to remove
+LBDFERSI
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+FLDEP_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+FLDEW_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+FOLATE_I
+Variables to remove
+LBDRFOSI
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+FOLFMS_I
+Variables to remove
+LBDFOT
+LBDSF1LC
+LBDSF2LC
+LBDSF3LC
+LBDSF4LC
+LBDSF5LC
+LBDSF6LC
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+GHB_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+HEPA_I - process separately
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+LBXHA - 3 to nan
+Binary variable
+LBXHA
+
+HEPBD_I
+Variables to remove
+LBDHBG
+LBDHD
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+LBXHBC
+
+HEPB_S_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+LBXHBS
+
+HEPC_I - Do not use this file
+
+HEPE_I
+Variables to remove
+LBDHEM
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+LBDHEG
+
+HSV_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+LBXHE1 - 3 to nan
+LBXHE2 - 3 to nan
+Binary variable
+LBXHE1
+LBXHE2
+
+HSCRP_I
+Variables to remove
+LBDHRPLC
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+HIV_I - Do not use this file
+
+ORHPV_I
+Variables to remove
+Keep only col 1 and last
+remove below
+ORXGH
+ORXGL
+ORXH06
+ORXH11
+ORXH16
+ORXH18
+ORXH26
+ORXH31
+ORXH33
+ORXH35
+ORXH39
+ORXH40
+ORXH42
+ORXH45
+ORXH51
+ORXH52
+ORXH53
+ORXH54
+ORXH55
+ORXH56
+ORXH58
+ORXH59
+ORXH61
+ORXH62
+ORXH64
+ORXH66
+ORXH67
+ORXH68
+ORXH69
+ORXH70
+ORXH71
+ORXH72
+ORXH73
+ORXH81
+ORXH82
+ORXH83
+ORXH84
+ORXHPC
+ORXHPI
+Filter variables
+None
+Change to nan variables
+ORXHPV - 3 to nan
+Binary variable
+ORXHPV
+
+HPVSWC_I - female only
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+LBXHP2C - 3 to nan
+Binary variable
+LBXHP2C
+
+HPVSWR_I - female only
+Variables to remove
+Keep only column 1 and 2
+Filter variables
+None
+Change to nan variables
+LBDRPCR - 3 to nan
+Binary variable
+LBDRPCR
+
+SSNEON_I
+Variables to remove
+SSIMIDLC
+SSACETLC
+SSCLOTLC
+SSTHIALC
+SSOHIMLC
+SSANDLC
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+INS_I
+Variables to remove
+LBDINSI
+LBDINLC
+PHAFSTMN
+Filter variables
+None
+Change to nan variables
+WTSAF2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+UIO_I
+Variables to remove
+URDUIOLC
+Filter variables
+None
+Change to nan variables
+WTSA2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+UHG_I
+Variables to remove
+URDUHGLC
+Filter variables
+None
+Change to nan variables
+WTSA2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+UM_I
+Variables to remove
+URDUBALC
+URDUCDLC
+URDUCOLC
+URDUCSLC
+URDUMOLC
+URDUMNLC
+URDUPBLC
+URDUSBLC
+URDUSNLC
+URDUSRLC
+URDUTLLC
+URDUTULC
+URDUURLC
+Filter variables
+None
+Change to nan variables
+WTSA2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+UMS_I
+Variables to remove
+URDUBALC
+URDUCDLC
+URDUCOLC
+URDUCSLC
+URDUMOLC
+URDUMNLC
+URDUPBLC
+URDUSBLC
+URDUSNLC
+URDUSRLC
+URDUTLLC
+URDUTULC
+URDUURLC
+Filter variables
+None
+Change to nan variables
+WTFSM - 0 to nan - 2nd column
+Binary variable
+None
+
+SSMHHT_I
+Variables to remove
+SSMHHTL
+SSECPTL
+SSMONPL
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+OGTT_I
+Variables to remove
+LBDGLTSI
+GTDSCMMN
+GTDDR1MN
+GTDBL2MN
+GTDDR2MN
+GTXDRANK
+GTDCODE
+Filter variables
+None
+Change to nan variables
+WTSOG2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+PFAS_I
+Variables to remove
+LBDPFDEL
+LBDPFHSL
+LBDMPAHL
+LBDPFNAL
+LBDPFUAL
+LBDPFDOL
+LBDNFOAL
+LBDBFOAL
+LBDNFOSL
+LBDMFOSL
+Filter variables
+None
+Change to nan variables
+WTSB2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+EPHPP_I
+Variables to remove
+URDBP3LC
+URDBPHLC
+URDBPFLC
+URDBPSLC
+URDTLCLC
+URDTRSLC
+URDBUPLC
+URDEPBLC
+URDMPBLC
+URDPPBLC
+URD14DLC
+URDDCBLC
+Filter variables
+None
+Change to nan variables
+WTSB2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+PHTHTE_I
+Variables to remove
+URDCNPLC
+URDCOPLC
+URDECPLC
+URDHIBLC
+URDMBPLC
+URDMC1LC
+URDMCOLC
+URDMEPLC
+URDMHBLC
+URDMHHLC
+URDMCHLC
+URDMHPLC
+URDMIBLC
+URDMNPLC
+URDMOHLC
+URDMZPLC
+Filter variables
+None
+Change to nan variables
+WTSB2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+GLU_I
+Variables to remove
+LBDGLUSI
+Filter variables
+None
+Change to nan variables
+WTSAF2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+UCPREG_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+URXPREG - 3 to nan
+Binary variable
+URXPREG
+
+TST_I
+Variables to remove
+LBDTSTLC
+LBDESTLC
+LBDSHGLC
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+UASS_I
+Variables to remove
+URDUA3LC
+URDUA5LC
+URDUABLC
+URDUACLC
+URDUDALC
+URDUMMAL
+Filter variables
+None
+Change to nan variables
+WTFSM - 0 to nan - 2nd column
+Binary variable
+None
+
+UAS_I
+Variables to remove
+URDUA3LC
+URDUA5LC
+URDUABLC
+URDUACLC
+URDUDALC
+URDUMMAL
+Filter variables
+None
+Change to nan variables
+WTSA2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+BIOPRO_I
+Variables to remove
+LBDSALSI
+LBDSBUSI
+LBDSCASI
+LBDSCHSI
+LBDSCRSI
+LBDSGBSI
+LBDSGLSI
+LBDSIRSI
+LBDSPHSI
+LBDSTBSI
+LBDSTPSI
+LBDSTRSI
+LBDSUASI
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+TFR_I
+Variables to remove
+LBDTFRSI
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+TRICH_I
+Variables to remove
+None
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+URXUTRI
+
+UCFLOW_I - do not use this variable
+
+UVOC_I
+Variables to remove
+URD1DCLC
+URD2DCLC
+URD2MHLC
+URD34MLC
+URDAAMLC
+URDAMCLC
+URDATCLC
+URDBMALC
+URDBPMLC
+URDCEMLC
+URDCYALC
+URDCYMLC
+URDDHBLC
+URDDPMLC
+URDGAMLC
+URDHEMLC
+URDHP2LC
+URDHPMLC
+URDPM1LC
+URDPM3LC
+URDMADLC
+URDMB1LC
+URDMB2LC
+URDMB3LC
+URDPHELC
+URDPHGLC
+URDPMALC
+URDPMMLC
+URDTCVLC
+Filter variables
+None
+Change to nan variables
+WTSA2YR - 0 to nan - 2nd column
+Binary variable
+None
+
+UVOCS_I
+Variables to remove
+URD1DCLC
+URD2DCLC
+URD2MHLC
+URD34MLC
+URDAAMLC
+URDAMCLC
+URDATCLC
+URDBMALC
+URDBPMLC
+URDCEMLC
+URDCYALC
+URDCYMLC
+URDDHBLC
+URDDPMLC
+URDGAMLC
+URDHEMLC
+URDHP2LC
+URDHPMLC
+URDPM1LC
+URDPM3LC
+URDMADLC
+URDMB1LC
+URDMB2LC
+URDMB3LC
+URDPHELC
+URDPHGLC
+URDPMALC
+URDPMMLC
+URDTCVLC
+Filter variables
+None
+Change to nan variables
+WTFSM - 0 to nan - 2nd column
+Binary variable
+None
+
+VOCWB_I
+Variables to remove
+LBD2DFLC
+LBD4CELC
+LBDV06LC
+LBDV07LC
+LBDV08LC
+LBDV1DLC
+LBDV2ALC
+LBDV3BLC
+LBDV4CLC
+LBDVBFLC
+LBDVBMLC
+LBDVBZLC
+LBDVZBLC
+LBDVC6LC
+LBDVCBLC
+LBDVCFLC
+LBDVCMLC
+LBDVCTLC
+LBDVDBLC
+LBDVDELC
+LBDVEELC
+LBDVDXLC
+LBDVEALC
+LBDVEBLC
+LBDVECLC
+LBDVFNLC
+LBDVIBLC
+LBDVIPLC
+LBDVMCLC
+LBDVMELC
+LBDVMPLC
+LBDVNBLC
+LBDVOXLC
+LBDVTCLC
+LBDVTELC
+LBDVFTLC
+LBDVHTLC
+LBDVTOLC
+LBDVTPLC
+LBDVVBLC
+LBDVXYLC
+Filter variables
+None
+Change to nan variables
+None
+Binary variable
+None
+
+VOCWBS_I
+Variables to remove
+LBD2DFLC
+LBD4CELC
+LBDV06LC
+LBDV07LC
+LBDV08LC
+LBDV1DLC
+LBDV2ALC
+LBDV3BLC
+LBDV4CLC
+LBDVBFLC
+LBDVBMLC
+LBDVBZLC
+LBDVZBLC
+LBDVC6LC
+LBDVCBLC
+LBDVCFLC
+LBDVCMLC
+LBDVCTLC
+LBDVDBLC
+LBDVDELC
+LBDVEELC
+LBDVDXLC
+LBDVEALC
+LBDVEBLC
+LBDVECLC
+LBDVFNLC
+LBDVIBLC
+LBDVIPLC
+LBDVMCLC
+LBDVMELC
+LBDVMPLC
+LBDVNBLC
+LBDVOXLC
+LBDVTCLC
+LBDVTELC
+LBDVFTLC
+LBDVHTLC
+LBDVTOLC
+LBDVTPLC
+LBDVVBLC
+LBDVXYLC
+Filter variables
+None
+Change to nan variables
+WTSVS2YR - 0 to nan - 2nd column
+Binary variable
+None
