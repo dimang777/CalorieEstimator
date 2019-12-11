@@ -17,29 +17,21 @@ diet_folder_str = 'Dietary Data'
 exam_folder_str = 'Examination Data'
 lab_folder_str = 'Laboratory Data'
 
-demo_var_str = 'Demo'
-diet_var_str = 'Diet'
-exam_var_str = 'Exam'
-lab_var_str = 'Lab'
+demo_var_str = 'demo'
+diet_var_str = 'diet'
+exam_var_str = 'exam'
+lab_var_str = 'lab'
 
 ext = '.xpt'
 
-TotalVars_num = 0
+totalvars_num = 0
 
 year = '2015'
 
-###############################################################################
-# Misc
-###############################################################################
-
-
-# Worked
-with open(save_folder+'test.pickle', 'wb') as handle:
-    pickle.dump([filename], handle)
-
-with open(save_folder+'test.pickle', 'rb') as handle:
-    [filename] = pickle.load(handle)
-
+# Deleted files: All extensions .xpt
+# Lab: HIV_I
+# Ques: ACQ_I
+# Ques: BPQ_I
 
 ###############################################################################
 # Functions
@@ -66,8 +58,40 @@ def get_filenames(mypath):
 
     return filenames, file_idx
 
-def load_files(mypath, ext, var_str, year, file_idx, filenames):
+def generate_save_code(var_str, file_idx, filenames, year):
+    save_code_str = 'pickle.dump('
+
+    if var_str == 'lab':
+        save_variables_str = '[lab_filenames_pre, '
+    else:
+        save_variables_str = '['
+
+    for i in range(len(file_idx)):
+        save_variables_str = save_variables_str + \
+            var_str + '_' + year + '_' + filenames[i] + '_raw, ' + \
+            var_str + '_' + year + '_' + filenames[i] + '_raw_lbl, '
+    save_variables_str = save_variables_str + ']'
+
+    save_code_str = save_code_str + save_variables_str + ', f)'
+
+    return save_code_str, save_variables_str
+
+
+###############################################################################
+# Demographic
+###############################################################################
+if 1:
+    print(demo_folder_str)
+    mypath = load_folder + demo_folder_str
+
+    # Get file names in the folder
+    [filenames, file_idx] = get_filenames(mypath)
+
+
     # Load files unto the workspace. Each variable will have data from each file
+    # Although repeating, this section could not be put into Functions
+    # since direct loading to workspace was required.
+    var_str = demo_var_str
 
     # Keep track of the variable names
     varnames = []
@@ -78,7 +102,7 @@ def load_files(mypath, ext, var_str, year, file_idx, filenames):
         with open(mypath+'/'+filenames[i]+ext, 'rb') as f:
             exec(var_str + '_' + year + '_' + filenames[i] + '_raw = xport.to_numpy(f)') # Worked
             # Count the total number of variables
-            exec('TotalVars_num += ' + var_str + '_' + year + '_' + filenames[i] + '_raw.shape[1]')
+            exec('totalvars_num += ' + var_str + '_' + year + '_' + filenames[i] + '_raw.shape[1]')
         # Store loaded file information
         with open(mypath+'/'+filenames[i]+ext, 'rb') as f:
             exec(var_str + '_' + year + '_' + filenames[i] + '_raw_lbl = xport.Reader(f).fields')
@@ -87,52 +111,28 @@ def load_files(mypath, ext, var_str, year, file_idx, filenames):
         exec('varnames.append(\'' + var_str + '_' + year + '_' + filenames[i] + '_raw\')')
         exec('varnames.append(\'' + var_str + '_' + year + '_' + filenames[i] + '_raw_lbl\')')
 
-    return varnames
+    exec('varnames_' + var_str + '_' + year + ' = varnames')
 
 
+    # Generate code for saving
+    demo_save_code_str, demo_save_variables_str = generate_save_code(demo_var_str, file_idx, filenames, year)
 
-# Demographic
-if 1:
-    print(demo_folder_str)
-    mypath = load_folder + demo_folder_str
-
-    # Get file names in the folder
-    [filenames, file_idx] = get_filenames(mypath)
-
-
-    # Load files unto the workspace.
-    temp = load_files(mypath, ext, diet_var_str, year, file_idx, filenames)
-    exec('varnames_' + diet_var_str + '_' + year + ' = temp')
-
-
-
-
-    # Save variables
-    Demo_save_code_str = 'pickle.dump('
-
-    Demo_save_variables_str = '['
-    for i in range(len(file_idx)):
-        Demo_save_variables_str = Demo_save_variables_str + \
-            demo_var_str + '_' + year + '_' + filenames[i] + '_raw, ' + \
-            demo_var_str + '_' + year + '_' + filenames[i] + '_raw_lbl, '
-    Demo_save_variables_str = Demo_save_variables_str + ']'
-
-    Demo_save_code_str = Demo_save_code_str + Demo_save_variables_str + ', f)'
-
-
+    # Save
     with open(save_folder + demo_var_str + '_' + year + '_raw.pkl', 'wb') as f:
-        exec(Demo_save_code_str)
+        exec(demo_save_code_str)
     with open(save_folder + demo_var_str + '_' + year + '_raw_loadstr.pkl', 'wb') as f:
-        pickle.dump(Demo_save_variables_str, f)
+        pickle.dump(demo_save_variables_str, f)
 
 
     with open(save_folder + demo_var_str + '_' + year + '_raw_loadstr.pkl', 'rb') as f:
-        Demo_save_variables_str = pickle.load(f)
+        demo_save_variables_str = pickle.load(f)
 
     with open(save_folder + demo_var_str + '_' + year + '_raw.pkl', 'rb') as f:
-        exec(Demo_save_variables_str + '= pickle.load(f)')
+        exec(demo_save_variables_str + '= pickle.load(f)')
 
+###############################################################################
 # Diet
+###############################################################################
 if 1:
     print(diet_folder_str)
     mypath = load_folder + diet_folder_str
@@ -141,36 +141,47 @@ if 1:
     [filenames, file_idx] = get_filenames(mypath)
 
 
-    # Load files unto the workspace.
-    temp = load_files(mypath, ext, diet_var_str, year, file_idx, filenames)
-    exec('varnames_' + diet_var_str + '_' + year + ' = temp')
+    # Load files unto the workspace. Each variable will have data from each file
+    var_str = diet_var_str
 
+    # Keep track of the variable names
+    varnames = []
 
+    for i in range(len(file_idx)):    
+        print(i)
+        # Load each file unto a designated variable
+        with open(mypath+'/'+filenames[i]+ext, 'rb') as f:
+            exec(var_str + '_' + year + '_' + filenames[i] + '_raw = xport.to_numpy(f)') # Worked
+            # Count the total number of variables
+            exec('totalvars_num += ' + var_str + '_' + year + '_' + filenames[i] + '_raw.shape[1]')
+        # Store loaded file information
+        with open(mypath+'/'+filenames[i]+ext, 'rb') as f:
+            exec(var_str + '_' + year + '_' + filenames[i] + '_raw_lbl = xport.Reader(f).fields')
 
-    # Save variables
-    Diet_save_code_str = 'pickle.dump('
+        # Keep track of the variable names and the file information
+        exec('varnames.append(\'' + var_str + '_' + year + '_' + filenames[i] + '_raw\')')
+        exec('varnames.append(\'' + var_str + '_' + year + '_' + filenames[i] + '_raw_lbl\')')
 
-    Diet_save_variables_str = '['
-    for i in range(len(file_idx)):
-        Diet_save_variables_str = Diet_save_variables_str + \
-            diet_var_str + '_' + year + '_' + filenames[i] + '_raw, ' + \
-            diet_var_str + '_' + year + '_' + filenames[i] + '_raw_lbl, '
-    Diet_save_variables_str = Diet_save_variables_str + ']'
+    exec('varnames_' + var_str + '_' + year + ' = varnames')
 
-    Diet_save_code_str = Diet_save_code_str + Diet_save_variables_str + ', f)'
+    # Generate code for saving
+    [diet_save_code_str, diet_save_variables_str] = generate_save_code(diet_var_str, file_idx, filenames, year)
 
+    # Save
     with open(save_folder + diet_var_str + '_' + year + '_raw.pkl', 'wb') as f:
-        exec(Diet_save_code_str)
+        exec(diet_save_code_str)
     with open(save_folder + diet_var_str + '_' + year + '_raw_loadstr.pkl', 'wb') as f:
-        pickle.dump(Diet_save_variables_str, f)
+        pickle.dump(diet_save_variables_str, f)
 
     with open(save_folder + diet_var_str + '_' + year + '_raw_loadstr.pkl', 'rb') as f:
-        Diet_save_variables_str = pickle.load(f)
+        diet_save_variables_str = pickle.load(f)
 
     with open(save_folder + diet_var_str + '_' + year + '_raw.pkl', 'rb') as f:
-        exec(Diet_save_variables_str + '= pickle.load(f)')
+        exec(diet_save_variables_str + '= pickle.load(f)')
 
+###############################################################################
 # Exam
+###############################################################################
 if 1:
     print(exam_folder_str)
     mypath = load_folder + exam_folder_str
@@ -178,36 +189,47 @@ if 1:
     # Get file names in the folder
     [filenames, file_idx] = get_filenames(mypath)
 
-    # Load files unto the workspace.
-    temp = load_files(mypath, ext, exam_var_str, year, file_idx, filenames)
-    exec('varnames_' + exam_var_str + '_' + year + ' = temp')
+    # Load files unto the workspace. Each variable will have data from each file
+    var_str = exam_var_str
 
+    # Keep track of the variable names
+    varnames = []
 
+    for i in range(len(file_idx)):    
+        print(i)
+        # Load each file unto a designated variable
+        with open(mypath+'/'+filenames[i]+ext, 'rb') as f:
+            exec(var_str + '_' + year + '_' + filenames[i] + '_raw = xport.to_numpy(f)') # Worked
+            # Count the total number of variables
+            exec('totalvars_num += ' + var_str + '_' + year + '_' + filenames[i] + '_raw.shape[1]')
+        # Store loaded file information
+        with open(mypath+'/'+filenames[i]+ext, 'rb') as f:
+            exec(var_str + '_' + year + '_' + filenames[i] + '_raw_lbl = xport.Reader(f).fields')
 
-    # Save variables
-    Exam_save_code_str = 'pickle.dump('
+        # Keep track of the variable names and the file information
+        exec('varnames.append(\'' + var_str + '_' + year + '_' + filenames[i] + '_raw\')')
+        exec('varnames.append(\'' + var_str + '_' + year + '_' + filenames[i] + '_raw_lbl\')')
 
-    Exam_save_variables_str = '['
-    for i in range(len(file_idx)):
-        Exam_save_variables_str = Exam_save_variables_str + \
-            exam_var_str + '_' + year + '_' + filenames[i] + '_raw, ' + \
-            exam_var_str + '_' + year + '_' + filenames[i] + '_raw_lbl, '
-    Exam_save_variables_str = Exam_save_variables_str + ']'
+    exec('varnames_' + var_str + '_' + year + ' = varnames')
 
-    Exam_save_code_str = Exam_save_code_str + Exam_save_variables_str + ', f)'
+    # Generate code for saving
+    [exam_save_code_str, exam_save_variables_str] = generate_save_code(exam_var_str, file_idx, filenames, year)
 
+    # Save
     with open(save_folder + exam_var_str + '_' + year + '_raw.pkl', 'wb') as f:
-        exec(Exam_save_code_str)
+        exec(exam_save_code_str)
     with open(save_folder + exam_var_str + '_' + year + '_raw_loadstr.pkl', 'wb') as f:
-        pickle.dump(Exam_save_variables_str, f)
+        pickle.dump(exam_save_variables_str, f)
 
     with open(save_folder + exam_var_str + '_' + year + '_raw_loadstr.pkl', 'rb') as f:
-        Exam_save_variables_str = pickle.load(f)
+        exam_save_variables_str = pickle.load(f)
 
     with open(save_folder + exam_var_str + '_' + year + '_raw.pkl', 'rb') as f:
-        exec(Exam_save_variables_str + '= pickle.load(f)')
+        exec(exam_save_variables_str + '= pickle.load(f)')
 
-# Lab - NOTE: HIV_I is missing from the beginning. That's okay. It's not used. But is different from other files not used.
+###############################################################################
+# Lab
+###############################################################################
 if 1:
 
     print(lab_folder_str)
@@ -216,39 +238,46 @@ if 1:
     # Get file names in the folder
     [filenames, file_idx] = get_filenames(mypath)
 
-    # Load files unto the workspace.
-    temp = load_files(mypath, ext, lab_var_str, year, file_idx, filenames)
-    exec('varnames_' + lab_var_str + '_' + year + ' = temp')
+    # Load files unto the workspace. Each variable will have data from each file
+    var_str = lab_var_str
 
+    # Keep track of the variable names
+    varnames = []
 
+    for i in range(len(file_idx)):    
+        print(i)
+        # Load each file unto a designated variable
+        with open(mypath+'/'+filenames[i]+ext, 'rb') as f:
+            exec(var_str + '_' + year + '_' + filenames[i] + '_raw = xport.to_numpy(f)') # Worked
+            # Count the total number of variables
+            exec('totalvars_num += ' + var_str + '_' + year + '_' + filenames[i] + '_raw.shape[1]')
+        # Store loaded file information
+        with open(mypath+'/'+filenames[i]+ext, 'rb') as f:
+            exec(var_str + '_' + year + '_' + filenames[i] + '_raw_lbl = xport.Reader(f).fields')
 
-    # Save variables
-    Lab_save_code_str = 'pickle.dump('
+        # Keep track of the variable names and the file information
+        exec('varnames.append(\'' + var_str + '_' + year + '_' + filenames[i] + '_raw\')')
+        exec('varnames.append(\'' + var_str + '_' + year + '_' + filenames[i] + '_raw_lbl\')')
 
-    Lab_save_variables_str = '[Lab_filenames_Pre, '
-    for i in range(len(file_idx)):
-        Lab_save_variables_str = Lab_save_variables_str + \
-            lab_var_str + '_' + year + '_' + filenames[i] + '_raw, ' + \
-            lab_var_str + '_' + year + '_' + filenames[i] + '_raw_lbl, '
-    Lab_save_variables_str = Lab_save_variables_str + ']'
+    exec('varnames_' + var_str + '_' + year + ' = varnames')
 
-    Lab_save_code_str = Lab_save_code_str + Lab_save_variables_str + ', f)'
+    # Special for lab
+    lab_filenames_pre = filenames
 
+    # Generate code for saving
+    [lab_save_code_str, lab_save_variables_str] = generate_save_code(lab_var_str, file_idx, filenames, year)
+
+    # Save
     with open(save_folder + lab_var_str + '_' + year + '_raw.pkl', 'wb') as f:
-        exec(Lab_save_code_str)
+        exec(lab_save_code_str)
     with open(save_folder + lab_var_str + '_' + year + '_raw_loadstr.pkl', 'wb') as f:
-        pickle.dump(Lab_save_variables_str, f)
+        pickle.dump(lab_save_variables_str, f)
 
     with open(save_folder + lab_var_str + '_' + year + '_raw_loadstr.pkl', 'rb') as f:
-        Lab_save_variables_str = pickle.load(f)
+        lab_save_variables_str = pickle.load(f)
 
     with open(save_folder + lab_var_str + '_' + year + '_raw.pkl', 'rb') as f:
-        exec(Lab_save_variables_str + '= pickle.load(f)')
+        exec(lab_save_variables_str + '= pickle.load(f)')
 
-print(TotalVars_num)
+print(totalvars_num)
 
-
-# Deleted files: All extensions .xpt
-# Lab: HIV_I
-# Ques: ACQ_I
-# Ques: BPQ_I
