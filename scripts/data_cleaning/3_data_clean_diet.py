@@ -246,7 +246,7 @@ for condense in [0]:
     bool_array_tot = np.logical_or(bool_array0, bool_array1)
     np.sum(bool_array_tot)
     diet_2015_DR1TOT_I_clean3[bool_array_tot, changevars_idx[i]] = float('nan')
-    
+
     diet_2015_DR1TOT_I_clean3.shape
     
     diet_2015_DR1TOT_I_clean3_lbl = diet_2015_DR1TOT_I_clean2_lbl
