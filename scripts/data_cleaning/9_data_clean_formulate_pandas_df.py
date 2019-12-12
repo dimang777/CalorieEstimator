@@ -6,7 +6,7 @@ import pandas as pd
 # Set up folders and variables
 ###############################################################################
 filename = '9_data_clean_formulate_pandas_df.py'
-save_folder = '../../data/clean/'
+save_folder = '../../data/cleaned_df/'
 load_folder = '../../data/clean/'
 
 demo_var_str = 'demo'
