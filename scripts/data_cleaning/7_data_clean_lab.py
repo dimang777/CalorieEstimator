@@ -14,10 +14,6 @@ diet_var_str = 'diet'
 exam_var_str = 'exam'
 lab_var_str = 'lab'
 
-ext = '.xpt'
-
-totalvars_num = 0
-
 year = '2015'
 
 with open(load_folder + lab_var_str + '_' + year + '_raw_loadstr.pkl', 'rb') as f:

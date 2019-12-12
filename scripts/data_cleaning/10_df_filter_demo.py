@@ -10,17 +10,6 @@ filename = '10_df_filter_demo.py'
 save_folder = '../../data/cleaned_df/'
 load_folder = '../../data/cleaned_df/'
 
-demo_var_str = 'demo'
-diet_var_str = 'diet'
-exam_var_str = 'exam'
-lab_var_str = 'lab'
-
-ext = '.xpt'
-
-totalvars_num = 0
-
-year = '2015'
-
 with open(load_folder + 'df_bfr_demo_filter.pkl', 'rb') as f:
     [df_bfr_demo_filter, df_collection_key, \
                  demo_filenames, \

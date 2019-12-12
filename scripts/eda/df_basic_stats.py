@@ -1,97 +1,77 @@
-# This file requires Sub1 to run first to load data
-import xport
-import os
-import matplotlib.pyplot as plt
-# %matplotlib qt
-import numpy as np
-from os import walk
-import h5py
-import math
-import pandas as pd
-import seaborn as sns
+# Prepare the data to put everything into pandas dataframe
 import pickle
+import pandas as pd
+import numpy as np
 
-savefolder = 'C:\\Users\\diman\\OneDrive\\Work_temp\\Insight Fellows Demo 2019\\WorkSave'
-homefolder = 'C:\\Users\\diman\\OneDrive\\Work_temp\\Insight Fellows Demo 2019'
-filename = 'Sub12_DF_Basic_Stats.py'
+###############################################################################
+# Set up folders and variables
+###############################################################################
+filename = 'df_basic_stats.py'
+save_folder = '../../data/cleaned_df/'
+load_folder = '../../data/cleaned_df/'
 
-os.chdir(homefolder)
-from Func_Isaac_NHANES import RemoveVal, str2num_1Darray, Replace_w_nan
+figure_folder = '../../images/eda/'
 
-Demo_var_str = 'Demo'
-Diet_var_str = 'Diet'
-Exam_var_str = 'Exam'
-Lab_var_str = 'Lab'
-Ques_var_str = 'Ques'
+###############################################################################
+# Load
+###############################################################################
 
-ext = '.xpt'
-years = ['2015', '2013', '2011', '2009', '2007', '2005']
-
-Save_folder = 'C:/Users/diman/OneDrive/Work_temp/Insight Fellows Demo 2019/WorkSave/'
-
-with open(Save_folder + 'df.pkl', 'rb') as f:
+with open(load_folder + 'df.pkl', 'rb') as f:
     [df] = pickle.load(f)
 
-with open(Save_folder + 'df_bfr_demo_filter.pkl', 'rb') as f:
+with open(load_folder + 'df_bfr_demo_filter.pkl', 'rb') as f:
     [df_bfr_demo_filter, df_collection_key, \
-                 Demo_filenames, \
-                 Demo_filename_varname_pd_dict, \
-                 Diet_filenames, \
-                 Diet_filename_varname_pd_dict, \
-                 Exam_filenames, \
-                 Exam_filename_varname_pd_dict, \
-                 Lab_filenames, \
-                 Lab_filename_varname_pd_dict, \
+                 demo_filenames, \
+                 demo_filename_varname_pd_dict, \
+                 diet_filenames, \
+                 diet_filename_varname_pd_dict, \
+                 exam_filenames, \
+                 exam_filename_varname_pd_dict, \
+                 lab_filenames, \
+                 lab_filename_varname_pd_dict, \
                      ] = pickle.load(f)
 
-df
-df_collection_key
+###############################################################################
+# Generate a list of keys to use
+###############################################################################
 
-Demo_filenames
-Demo_filename_varname_pd_dict
-
-Diet_filenames
-Diet_filename_varname_pd_dict
-
-Exam_filenames
-Exam_filename_varname_pd_dict
-
-Lab_filenames
-Lab_filename_varname_pd_dict
-
-df_key = Demo_filename_varname_pd_dict[Demo_filenames[0]][1:]
-for i_str in Diet_filename_varname_pd_dict[Diet_filenames[0]][1:]:
+df_key = demo_filename_varname_pd_dict[demo_filenames[0]][1:]
+for i_str in diet_filename_varname_pd_dict[diet_filenames[0]][1:]:
     df_key.append(i_str)
-for j_str in Exam_filenames:
-    for i_str in Exam_filename_varname_pd_dict[j_str][1:]:
+for j_str in exam_filenames:
+    for i_str in exam_filename_varname_pd_dict[j_str][1:]:
         df_key.append(i_str)
-for j_str in Lab_filenames:
-    for i_str in Lab_filename_varname_pd_dict[j_str][1:]:
+for j_str in lab_filenames:
+    for i_str in lab_filename_varname_pd_dict[j_str][1:]:
         df_key.append(i_str)
-
-len(df_key)
-df_key # Done
 
 # Total data after phase 1 - 1310842
 # non-NA/null observations
-df.count().sum()
+print(df.count().sum())
 
+
+###############################################################################
 # Sample Stats
+###############################################################################
+
 
 # 1 - Age
 df['D0_RIDAGEYR'].describe()
 
 df['D0_RIDAGEYR'].hist()
-df['D0_RIDAGEYR'].hist(bins=6)
+ax = df['D0_RIDAGEYR'].hist(bins=6)
+fig = ax.get_figure()
+fig.savefig(figure_folder+'figure.jpg')
+# make a function with standard format so I can use it repeatedly
 
 # 2 - Income
 key = 'D0_INDHHIN2'
 np.where(df[key] == 77)
 df[key].describe()
 df[key].hist(bins=100, range = (0,20))
-df[key][df[key]<60].hist() # this is a problem. A lot of 15 (higher than 100,000 lumped together) - what can I do. go with it I guess. Not everything has to be perfect. Try finding patterns
+df[key][df[key]<60].hist() # Skewed. A lot of 15 (higher than 100,000 lumped together)
 
-np.sum((df[key]<60)) # 5033 - so it's correct
+np.sum((df[key]<60)) # 5033 - correct
 
 # Correlation
 df_corr = df.corr()
@@ -157,8 +137,8 @@ with open(Save_folder + 'corr.pkl', 'rb') as f:
 
 # 0.7 and up considered high correlation - 
 # Source: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3576830/
-VarstoIgnore = Lab_filename_varname_pd_dict[Lab_filenames[51]][1:].copy()
-for i_str in Lab_filename_varname_pd_dict[Lab_filenames[49]][1:].copy():
+VarstoIgnore = lab_filename_varname_pd_dict[lab_filenames[51]][1:].copy()
+for i_str in lab_filename_varname_pd_dict[lab_filenames[49]][1:].copy():
     VarstoIgnore.append(i_str)
 
 
@@ -202,7 +182,7 @@ len(CorrelatedPairs)
    
 # 'WTSA2YR' in 'L43_WTSA2YR'
 Col_list = []
-for i_str in Diet_filename_varname_pd_dict[Diet_filenames[0]][1:]:
+for i_str in diet_filename_varname_pd_dict[diet_filenames[0]][1:]:
     if i_str not in VarstoIgnore:
         Col_list.append(i_str)
 
@@ -220,7 +200,7 @@ with pd.ExcelWriter('output2.xlsx') as writer:
 # df_corr_abs_05up = temp.mask(temp < 0.7, np.nan)
 
 
-Lab_filename_varname_pd_dict['TCHOL_I']
+lab_filename_varname_pd_dict['TCHOL_I']
 
 
 r_bloodchol_cholintake = df_corr_abs_triu['I0_DR1TCHOL'].sort_values(ascending=False, na_position='last')['L34_LBXTC']
@@ -229,13 +209,13 @@ ax1 = df.plot.scatter(x='I0_DR1TCHOL', y='L34_LBXTC')
 
 
 
-Lab_filename_varname_pd_dict['HDL_I']
+lab_filename_varname_pd_dict['HDL_I']
 r_bloodhddchol_cholintake = df_corr_abs_triu['I0_DR1TCHOL'].sort_values(ascending=False, na_position='last')['L16_LBDHDD']
 Sample_count_bhddchol_and_ichol = np.sum(np.logical_and(df['I0_DR1TCHOL'].notna(), df['L16_LBDHDD'].notna())*1)
 ax1 = df.plot.scatter(x='I0_DR1TCHOL', y='L16_LBDHDD')
 
 
-Lab_filename_varname_pd_dict['TRIGLY_I']
+lab_filename_varname_pd_dict['TRIGLY_I']
 r_bloodlddchol_cholintake = df_corr_abs_triu['I0_DR1TCHOL'].sort_values(ascending=False, na_position='last')['L37_LBDLDL']
 Sample_count_blddchol_and_ichol = np.sum(np.logical_and(df['I0_DR1TCHOL'].notna(), df['L37_LBDLDL'].notna())*1)
 ax1 = df.plot.scatter(x='I0_DR1TCHOL', y='L37_LBDLDL')
@@ -301,8 +281,8 @@ df_corr_triu.to_pickle('df_corr_triu.pkl')
 
 
 
-# Diet_filenames[0]
-# Diet_numVars = len(Diet_filename_varname_pd_dict[Diet_filenames[0]])
+# diet_filenames[0]
+# diet_numVars = len(diet_filename_varname_pd_dict[diet_filenames[0]])
 
 # 2^d = 3000
 # dlog2(2) = log2(3000)
