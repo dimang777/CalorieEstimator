@@ -1,41 +1,35 @@
-# This file requires Sub1 to run first to load data
-import xport
 import os
-import matplotlib.pyplot as plt
-# %matplotlib qt
 import numpy as np
-from os import walk
-import h5py
-import math
 import pickle
 
-savefolder = 'C:\\Users\\diman\\OneDrive\\Work_temp\\Insight Fellows Demo 2019\\WorkSave'
-homefolder = 'C:\\Users\\diman\\OneDrive\\Work_temp\\Insight Fellows Demo 2019'
-filename = 'Sub3_Data_Clean_Diet.py'
+###############################################################################
+# Set up folders and variables
+###############################################################################
+filename = '3_data_clean_diet.py'
+load_folder = '../../data/raw_formatted/'
+save_folder = '../../data/clean/'
 
-Demo_var_str = 'Demo'
-Diet_var_str = 'Diet'
-Exam_var_str = 'Exam'
-Lab_var_str = 'Lab'
-Ques_var_str = 'Ques'
+demo_var_str = 'demo'
+diet_var_str = 'diet'
+exam_var_str = 'exam'
+lab_var_str = 'lab'
 
 ext = '.xpt'
-years = ['2015', '2013', '2011', '2009', '2007', '2005']
+
+totalvars_num = 0
 
 year = '2015'
-Save_folder = 'C:/Users/diman/OneDrive/Work_temp/Insight Fellows Demo 2019/WorkSave/'
 
-with open(Save_folder + Diet_var_str + '_' + year + '_raw_loadstr.pkl', 'rb') as f:
-    Diet_save_variables_str = pickle.load(f)
+with open(load_folder + diet_var_str + '_' + year + '_raw_loadstr.pkl', 'rb') as f:
+    demo_save_variables_str = pickle.load(f)
 
-with open(Save_folder + Diet_var_str + '_' + year + '_raw.pkl', 'rb') as f:
-    exec(Diet_save_variables_str + '= pickle.load(f)')
-
-# Ignore error - above code loads the variables
+with open(load_folder + diet_var_str + '_' + year + '_raw.pkl', 'rb') as f:
+    exec(demo_save_variables_str + '= pickle.load(f)')
 
 
-for Condense in [0]:
-    Cols_toRemove = ['WTDR2D', 
+
+for condense in [0]: # Code folding
+    cols_toremove = ['WTDR2D',
     'DR1EXMER', 
     'DRABF',
     'DR1DBIH',
@@ -126,148 +120,143 @@ for Condense in [0]:
     'DRD370V']
 
 # Remove variables
-for Condense in [0]:
-    Cols_toRemove_Idx = []
-    for i in range(0,len(Cols_toRemove)):
-        Cols_toRemove_Idx.append(int(Diet_2015_DR1TOT_I_raw_lbl.index(Cols_toRemove[i])))
-    
-    Cols_toKeep_idx = []
-    for i in range(0,Diet_2015_DR1TOT_I_raw.shape[1]):
-        if i not in Cols_toRemove_Idx:
-            Cols_toKeep_idx.append(int(i))
-    
-    # VariablestoSave_flag = [True]*Diet_2015_DR1TOT_I_raw.shape[1] # To generate a list of trues - don't know how to manipulate yet
-    
-    Diet_2015_DR1TOT_I_clean1 = np.copy(Diet_2015_DR1TOT_I_raw[:,Cols_toKeep_idx])
-    
-    Diet_2015_DR1TOT_I_clean1.shape
-    
-    Diet_2015_DR1TOT_I_clean1_lbl = []
-    for i in Cols_toKeep_idx:
-        Diet_2015_DR1TOT_I_clean1_lbl.append(Diet_2015_DR1TOT_I_raw_lbl[i])
 
-# Filtering
-for Condense in [0]:
+
+###############################################################################
+# Remove features
+###############################################################################
+
+for condense in [0]:
+    cols_toremove_idx = []
+    for i in range(0,len(cols_toremove)):
+        cols_toremove_idx.append(int(diet_2015_DR1TOT_I_raw_lbl.index(cols_toremove[i])))
+
+    cols_tokeep_idx = []
+    for i in range(0,diet_2015_DR1TOT_I_raw.shape[1]):
+        if i not in cols_toremove_idx:
+            cols_tokeep_idx.append(int(i))
+
+    diet_2015_DR1TOT_I_clean1 = np.copy(diet_2015_DR1TOT_I_raw[:,cols_tokeep_idx])
+    
+    print(diet_2015_DR1TOT_I_clean1.shape)
+    
+    diet_2015_DR1TOT_I_clean1_lbl = []
+    for i in cols_tokeep_idx:
+        diet_2015_DR1TOT_I_clean1_lbl.append(diet_2015_DR1TOT_I_raw_lbl[i])
+
+###############################################################################
+# Filtering - replace or remove meaningless numbers
+###############################################################################
+for condense in [0]:
 # WTDRD1 - remove 0 and . (no nans) - other are continuous variable
 # DR1DRSTZ - remove 2,4,5,. (no nans) - keep only 1
 # DRDINT - remove . (nans) - keep 1 and 2
 # DRQSDIET - remove 1, 9, . - keep only 2
 # DR1_300 - remove 1, 3, 7, 9, . - keep only 2
 
-    FilterVars = ['WTDRD1', 'DR1DRSTZ', 'DRDINT', 'DRQSDIET', 'DR1_300']  
+    filtervars = ['WTDRD1', 'DR1DRSTZ', 'DRDINT', 'DRQSDIET', 'DR1_300']  
     
-    FilterVars_idx = []
-    for i_str in FilterVars:
-        FilterVars_idx.append(Diet_2015_DR1TOT_I_clean1_lbl.index(i_str))
+    filtervars_idx = []
+    for i_str in filtervars:
+        filtervars_idx.append(diet_2015_DR1TOT_I_clean1_lbl.index(i_str))
     
     i = 0
-    # np.sum(np.isnan(Diet_2015_DR1TOT_I_clean1[:, FilterVars_idx[i]])*1) # find nan
-    Keep_flag_clean1 = Diet_2015_DR1TOT_I_clean1[:, FilterVars_idx[i]] != 0
+    keep_flag_clean1 = diet_2015_DR1TOT_I_clean1[:, filtervars_idx[i]] != 0
     
     i = 1
-    Keep_flag_clean1 = np.logical_and(Keep_flag_clean1, Diet_2015_DR1TOT_I_clean1[:, FilterVars_idx[i]] == 1)
+    keep_flag_clean1 = np.logical_and(keep_flag_clean1, diet_2015_DR1TOT_I_clean1[:, filtervars_idx[i]] == 1)
     
     i = 2
-    Keep_flag_clean1 = np.logical_and(Keep_flag_clean1, np.logical_or(Diet_2015_DR1TOT_I_clean1[:, FilterVars_idx[i]] == 1, Diet_2015_DR1TOT_I_clean1[:, FilterVars_idx[i]] == 2))
-    # np.isnan(Diet_2015_DR1TOT_I_clean1[:, FilterVars_idx[i]]) # alternative approach - code not complete
+    keep_flag_clean1 = np.logical_and(keep_flag_clean1, np.logical_or(diet_2015_DR1TOT_I_clean1[:, filtervars_idx[i]] == 1, diet_2015_DR1TOT_I_clean1[:, filtervars_idx[i]] == 2))
+    # np.isnan(diet_2015_DR1TOT_I_clean1[:, filtervars_idx[i]]) # alternative approach - code not complete
     
     i = 3
-    Keep_flag_clean1 = np.logical_and(Keep_flag_clean1, Diet_2015_DR1TOT_I_clean1[:, FilterVars_idx[i]] == 2)
+    keep_flag_clean1 = np.logical_and(keep_flag_clean1, diet_2015_DR1TOT_I_clean1[:, filtervars_idx[i]] == 2)
     
     i = 4
-    Keep_flag_clean1 = np.logical_and(Keep_flag_clean1, Diet_2015_DR1TOT_I_clean1[:, FilterVars_idx[i]] == 2)
+    keep_flag_clean1 = np.logical_and(keep_flag_clean1, diet_2015_DR1TOT_I_clean1[:, filtervars_idx[i]] == 2)
     
-    np.sum(Keep_flag_clean1)
+    np.sum(keep_flag_clean1)
 
-
+###############################################################################
 # remove filtered variables
-for Condense in [0]:
-    FilterVars_toRemove_idx = []
-    for i in range(1,len(FilterVars)): # should keep WTDRD1
-        FilterVars_toRemove_idx.append(int(Diet_2015_DR1TOT_I_clean1_lbl.index(FilterVars[i])))
+###############################################################################
+for condense in [0]:
+    filtervars_toRemove_idx = []
+    for i in range(1,len(filtervars)): # should keep WTDRD1
+        filtervars_toRemove_idx.append(int(diet_2015_DR1TOT_I_clean1_lbl.index(filtervars[i])))
     
-    Cols_toKeep_aftfilt_idx = []
-    for i in range(0,Diet_2015_DR1TOT_I_clean1.shape[1]):
-        if i not in FilterVars_toRemove_idx:
-            Cols_toKeep_aftfilt_idx.append(int(i))
+    cols_tokeep_aftfilt_idx = []
+    for i in range(0,diet_2015_DR1TOT_I_clean1.shape[1]):
+        if i not in filtervars_toRemove_idx:
+            cols_tokeep_aftfilt_idx.append(int(i))
     
     # remove columns and rows at the same time
-    Diet_2015_DR1TOT_I_clean2_temp = np.copy(Diet_2015_DR1TOT_I_clean1[Keep_flag_clean1, :])
-    Diet_2015_DR1TOT_I_clean2 = np.copy(Diet_2015_DR1TOT_I_clean2_temp[:, Cols_toKeep_aftfilt_idx])
+    diet_2015_DR1TOT_I_clean2_temp = np.copy(diet_2015_DR1TOT_I_clean1[keep_flag_clean1, :])
+    diet_2015_DR1TOT_I_clean2 = np.copy(diet_2015_DR1TOT_I_clean2_temp[:, cols_tokeep_aftfilt_idx])
     
-    Diet_2015_DR1TOT_I_clean2.shape
+    diet_2015_DR1TOT_I_clean2.shape
     
-    Diet_2015_DR1TOT_I_clean2_lbl = []
-    for i in Cols_toKeep_aftfilt_idx:
-        Diet_2015_DR1TOT_I_clean2_lbl.append(Diet_2015_DR1TOT_I_clean1_lbl[i])
+    diet_2015_DR1TOT_I_clean2_lbl = []
+    for i in cols_tokeep_aftfilt_idx:
+        diet_2015_DR1TOT_I_clean2_lbl.append(diet_2015_DR1TOT_I_clean1_lbl[i])
     
-    len(Diet_2015_DR1TOT_I_clean2_lbl)
+    len(diet_2015_DR1TOT_I_clean2_lbl)
 
+###############################################################################
 # Replace with nans
-for Condense in [0]:
+###############################################################################
+for condense in [0]:
 # DBQ095Z - set 2, 3, 91, 99 to nan - keep 1,2,3
 # DRQSPREP - set 9 to nan
 # DR1STY - set 9 to nan
 # DRD360 - set 7, 9 to nan
 
-    Diet_2015_DR1TOT_I_clean3 = np.copy(Diet_2015_DR1TOT_I_clean2)
+    diet_2015_DR1TOT_I_clean3 = np.copy(diet_2015_DR1TOT_I_clean2)
     
-    ChangeVars = ['DBQ095Z', 'DRQSPREP', 'DR1STY', 'DRD360']  
+    changevars = ['DBQ095Z', 'DRQSPREP', 'DR1STY', 'DRD360']  
     
-    ChangeVars_idx = []
-    for i_str in ChangeVars:
-        ChangeVars_idx.append(Diet_2015_DR1TOT_I_clean2_lbl.index(i_str))
+    changevars_idx = []
+    for i_str in changevars:
+        changevars_idx.append(diet_2015_DR1TOT_I_clean2_lbl.index(i_str))
     
     i = 0
-    # np.sum(np.isnan(Diet_2015_DR1TOT_I_clean1[:, FilterVars_idx[i]])*1) # find nan
-    bool_array0 = Diet_2015_DR1TOT_I_clean3[:, ChangeVars_idx[i]] == 2
-    bool_array1 = Diet_2015_DR1TOT_I_clean3[:, ChangeVars_idx[i]] == 3
-    bool_array2 = Diet_2015_DR1TOT_I_clean3[:, ChangeVars_idx[i]] == 91
-    bool_array3 = Diet_2015_DR1TOT_I_clean3[:, ChangeVars_idx[i]] == 99
+    # np.sum(np.isnan(diet_2015_DR1TOT_I_clean1[:, filtervars_idx[i]])*1) # find nan
+    bool_array0 = diet_2015_DR1TOT_I_clean3[:, changevars_idx[i]] == 2
+    bool_array1 = diet_2015_DR1TOT_I_clean3[:, changevars_idx[i]] == 3
+    bool_array2 = diet_2015_DR1TOT_I_clean3[:, changevars_idx[i]] == 91
+    bool_array3 = diet_2015_DR1TOT_I_clean3[:, changevars_idx[i]] == 99
     bool_array_tot = np.logical_or(np.logical_or(np.logical_or(bool_array0, bool_array1), bool_array2), bool_array3)
     np.sum(bool_array_tot)
-    Diet_2015_DR1TOT_I_clean3[bool_array_tot, ChangeVars_idx[i]] = float('nan')
+    diet_2015_DR1TOT_I_clean3[bool_array_tot, changevars_idx[i]] = float('nan')
     
     i = 1
-    bool_array0 = Diet_2015_DR1TOT_I_clean3[:, ChangeVars_idx[i]] == 9
+    bool_array0 = diet_2015_DR1TOT_I_clean3[:, changevars_idx[i]] == 9
     np.sum(bool_array0)
-    Diet_2015_DR1TOT_I_clean3[bool_array0, ChangeVars_idx[i]] = float('nan')
+    diet_2015_DR1TOT_I_clean3[bool_array0, changevars_idx[i]] = float('nan')
     
     i = 2
-    bool_array0 = Diet_2015_DR1TOT_I_clean3[:, ChangeVars_idx[i]] == 9
+    bool_array0 = diet_2015_DR1TOT_I_clean3[:, changevars_idx[i]] == 9
     np.sum(bool_array0)
-    Diet_2015_DR1TOT_I_clean3[bool_array0, ChangeVars_idx[i]] = float('nan')
+    diet_2015_DR1TOT_I_clean3[bool_array0, changevars_idx[i]] = float('nan')
     
     i = 3
-    bool_array0 = Diet_2015_DR1TOT_I_clean3[:, ChangeVars_idx[i]] == 7
-    bool_array1 = Diet_2015_DR1TOT_I_clean3[:, ChangeVars_idx[i]] == 9
+    bool_array0 = diet_2015_DR1TOT_I_clean3[:, changevars_idx[i]] == 7
+    bool_array1 = diet_2015_DR1TOT_I_clean3[:, changevars_idx[i]] == 9
     bool_array_tot = np.logical_or(bool_array0, bool_array1)
     np.sum(bool_array_tot)
-    Diet_2015_DR1TOT_I_clean3[bool_array_tot, ChangeVars_idx[i]] = float('nan')
+    diet_2015_DR1TOT_I_clean3[bool_array_tot, changevars_idx[i]] = float('nan')
     
-    Diet_2015_DR1TOT_I_clean3.shape
+    diet_2015_DR1TOT_I_clean3.shape
     
-    Diet_2015_DR1TOT_I_clean3_lbl = Diet_2015_DR1TOT_I_clean2_lbl
+    diet_2015_DR1TOT_I_clean3_lbl = diet_2015_DR1TOT_I_clean2_lbl
 
+###############################################################################
 # Save
+###############################################################################
 
-with open(Save_folder + Diet_var_str + '_' + year + '_clean3.pkl', 'wb') as f:
-    pickle.dump([Diet_2015_DR1TOT_I_clean3, Diet_2015_DR1TOT_I_clean3_lbl], f)
+with open(save_folder + diet_var_str + '_' + year + '_clean3.pkl', 'wb') as f:
+    pickle.dump([diet_2015_DR1TOT_I_clean3, diet_2015_DR1TOT_I_clean3_lbl], f)
 
-with open(Save_folder + Diet_var_str + '_' + year + '_clean3.pkl', 'rb') as f:
-    [Diet_2015_DR1TOT_I_clean3, Diet_2015_DR1TOT_I_clean3_lbl] = pickle.load(f)
-
-# This code for saving doesn't work for now.
-if 0:
-    for Condense in [0]:
-        os.chdir(savefolder)
-        Source = homefolder+filename
-        hf = h5py.File('Diet_2015_DR1TOT_I_clean3.h5', 'w')
-        # hf.create_dataset(Source, (200,), dtype="S10")
-        hf.create_dataset('Diet_2015_DR1TOT_I_clean3', data=Diet_2015_DR1TOT_I_clean3)
-        hf.create_dataset('Diet_2015_DR1TOT_I_clean3_lbl', data=Diet_2015_DR1TOT_I_clean3_lbl)
-        
-        hf.close()
-        
-        type(Diet_2015_DR1TOT_I_clean3)
-        type(Diet_2015_DR1TOT_I_clean3_lbl)
+with open(save_folder + diet_var_str + '_' + year + '_clean3.pkl', 'rb') as f:
+    [diet_2015_DR1TOT_I_clean3, diet_2015_DR1TOT_I_clean3_lbl] = pickle.load(f)
