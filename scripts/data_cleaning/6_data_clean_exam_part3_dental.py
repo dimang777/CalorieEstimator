@@ -257,7 +257,7 @@ for condense in [0]:
     exam_2015_OHXDEN_I_clean3 = np.copy(exam_2015_OHXDEN_I_clean3_temp[:, cols_tokeep_aftfilt_idx])
     
     exam_2015_OHXDEN_I_clean3.shape
-    
+
     exam_2015_OHXDEN_I_clean3_lbl = []
     for i in cols_tokeep_aftfilt_idx:
         exam_2015_OHXDEN_I_clean3_lbl.append(exam_2015_OHXDEN_I_clean2_lbl[i])
