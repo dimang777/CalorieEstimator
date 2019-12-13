@@ -1,7 +1,7 @@
-# Prepare the data to put everything into pandas dataframe
 import pickle
 import pandas as pd
 import numpy as np
+import seaborn as sns
 
 ###############################################################################
 # Set up folders and variables
@@ -11,6 +11,7 @@ save_folder = '../../data/cleaned_df/'
 load_folder = '../../data/cleaned_df/'
 
 figure_folder = '../../images/eda/'
+sheet_folder = '../../sheets/eda/'
 
 ###############################################################################
 # Load
@@ -49,100 +50,130 @@ for j_str in lab_filenames:
 # non-NA/null observations
 print(df.count().sum())
 
+###############################################################################
+# Set up functions
+###############################################################################
+
+def decorate_fig_hist(ax, title):
+    ax.set_xlabel(title)
+    ax.set_ylabel('Count')
+    ax.set_title(title)
+    fig = ax.get_figure()
+    fig.savefig(figure_folder+title+'_hist.jpg')
+    fig.clf()
+
+def decorate_fig_corr(ax, xlabel, ylabel, title):
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_title(title)
+    fig = ax.get_figure()
+    fig.savefig(figure_folder+title+'_corr.jpg')
+    fig.clf()
+
+def decorate_fig_others(ax, xlabel, ylabel, title):
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.set_title(title)
+    fig = ax.get_figure()
+    fig.savefig(figure_folder+title+'.jpg')
+    fig.clf()
 
 ###############################################################################
-# Sample Stats
+# Sample Stats - histograms and correlations
 ###############################################################################
-
 
 # 1 - Age
 df['D0_RIDAGEYR'].describe()
 
 df['D0_RIDAGEYR'].hist()
-ax = df['D0_RIDAGEYR'].hist(bins=6)
-fig = ax.get_figure()
-fig.savefig(figure_folder+'figure.jpg')
-# make a function with standard format so I can use it repeatedly
+ax1 = df['D0_RIDAGEYR'].hist(bins=6)
+decorate_fig_hist(ax1, 'Age')
 
 # 2 - Income
 key = 'D0_INDHHIN2'
 np.where(df[key] == 77)
 df[key].describe()
-df[key].hist(bins=100, range = (0,20))
-df[key][df[key]<60].hist() # Skewed. A lot of 15 (higher than 100,000 lumped together)
+# df[key].hist(bins=100, range = (0,20))
+ax2 = df[key][df[key]<60].hist() # Skewed. A lot of 15 (higher than 100,000 lumped together)
+decorate_fig_hist(ax2, 'Income')
 
 np.sum((df[key]<60)) # 5033 - correct
 
 # Correlation
 df_corr = df.corr()
 df_corr.shape
-ax = sns.heatmap(abs(df_corr))
+ax3 = sns.heatmap(abs(df_corr))
 type(df_corr)
+decorate_fig_others(ax3, '', '', 'Correlation Heatmap')
+
 
 # SBP
 key = 'E0_BPXSY2'
 df[key].describe()
-df[key].hist()
-df_corr[key].hist()
+ax4 = df[key].hist()
+decorate_fig_hist(ax4, 'SBP')
+ax5 = df_corr[key].hist()
+decorate_fig_hist(ax5, 'SBP Correlations')
 df_corr[key].describe()
 df_corr[key].sort_values()
+
 
 # DBP
 key = 'E0_BPXDI2'
 df[key].describe()
-df[key].hist()
-df_corr[key].hist()
+ax6 = df[key].hist()
+decorate_fig_hist(ax6, 'DBP')
+ax6 = df_corr[key].hist()
+decorate_fig_hist(ax6, 'DBP Correlations')
 df_corr[key].describe()
 df_corr[key].sort_values()
 
 # Teeth_DETERSCORE
 key = 'E2_CUS_DETERSCORE'
 df[key].describe()
-df[key].hist()
-df_corr[key].hist()
+ax7 = df[key].hist()
+decorate_fig_hist(ax7, 'Teeth Deterioration Score')
+ax21 = df_corr[key].hist()
+decorate_fig_hist(ax21, 'Teeth Deter Score Correlations')
 df_corr[key].describe()
 df_corr[key].sort_values()
 
 # missing teeth
 key = 'E2_CUS_MISTEETH'
 df[key].describe()
-df[key].hist()
-df_corr[key].hist()
+ax8 = df[key].hist()
+decorate_fig_hist(ax8, 'Missing Teeth')
+ax9 = df_corr[key].hist()
+decorate_fig_hist(ax9, 'Missing Teeth Correlations')
 df_corr[key].describe()
 df_corr[key].sort_values()
 
 
-
-# df.values.flatten()
-
-# df_corr_flat = df_corr.values.flatten()
-
+# Upper triangle for absolute valued correlations matrix
 mask_triu = np.triu(np.ones((460, 460), dtype=bool))
-# np.fill_diagonal(mask_triu, False)
-
 df_corr_abs = df_corr.abs()
-
 df_corr_abs_triu = df_corr_abs.mask(mask_triu, np.nan)
-
 df_corr_triu = df_corr.mask(mask_triu, np.nan)
 
-df_corr_triu
-
-with open(Save_folder + 'corr.pkl', 'wb') as f:
+with open(save_folder + 'corr.pkl', 'wb') as f:
     pickle.dump([df_corr_triu], f)
 
-with open(Save_folder + 'corr.pkl', 'rb') as f:
+with open(save_folder + 'corr.pkl', 'rb') as f:
     [df_corr_triu] = pickle.load(f)
 
 
+###############################################################################
+# Sample Stats
+###############################################################################
+
 # 0.7 and up considered high correlation - 
 # Source: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3576830/
-VarstoIgnore = lab_filename_varname_pd_dict[lab_filenames[51]][1:].copy()
+varstoignore = lab_filename_varname_pd_dict[lab_filenames[51]][1:].copy()
 for i_str in lab_filename_varname_pd_dict[lab_filenames[49]][1:].copy():
-    VarstoIgnore.append(i_str)
+    varstoignore.append(i_str)
 
-
-WeightVars = ['WTSA2YR',
+# Weight variables that are not data and should be ignored
+weightvars = ['WTSA2YR',
     'WTSAF2YR',
     'WTSH2YR',
     'WTSOG2YR',
@@ -152,110 +183,113 @@ WeightVars = ['WTSA2YR',
     'WTDRD1']
     
     
-VarstoIgnore 
+varstoignore 
 for i_str in df_key:
-    for j_str in WeightVars:
+    for j_str in weightvars:
         if j_str in i_str:
-            VarstoIgnore.append(i_str)
+            varstoignore.append(i_str)
             break # only break out of the inner loop - confirmed below
 
+# Exception
+varstoignore.append('D0_RIDEXPRG')
 
-CorrelatedPairs = []
+# Take correlations between 0.5 and 0.9 (0.9 is used since too high correlations
+# can be suspected of being the same variable)
+correlatedpairs = []
 for i_str in df_key:
-    if i_str not in VarstoIgnore:
+    if i_str not in varstoignore:
         result_local = df_corr_abs_triu.index[np.logical_and(df_corr_abs_triu[i_str].values>0.5, df_corr_abs_triu[i_str].values<0.9)].tolist()
         if result_local != []:
             for j_str in result_local:
-                Sample_count_twovar = np.sum(np.logical_and(df[i_str].notna(), df[j_str].notna())*1)
-                CorrelatedPairs.append([i_str, j_str, df_corr_abs_triu.loc[j_str, i_str], Sample_count_twovar])
+                sample_count_twovar = np.sum(np.logical_and(df[i_str].notna(), df[j_str].notna())*1)
+                correlatedpairs.append([i_str, j_str, df_corr_abs_triu.loc[j_str, i_str], sample_count_twovar])
         
-len(CorrelatedPairs)
+print(len(correlatedpairs))
 
 
-# for i_str in [2,3,4,5,6]:
-#     print('i - ' + str(i_str))
-#     for j_str in [3,5]:
-#         print('j - ' + str(j_str))
-#         if j_str == i_str:
-#             print('broke')
-#             break
-   
-# 'WTSA2YR' in 'L43_WTSA2YR'
-Col_list = []
+# Exception: 'WTSA2YR' in 'L43_WTSA2YR'
+col_list = []
 for i_str in diet_filename_varname_pd_dict[diet_filenames[0]][1:]:
-    if i_str not in VarstoIgnore:
-        Col_list.append(i_str)
+    if i_str not in varstoignore:
+        col_list.append(i_str)
 
-colnum = 0        
-with pd.ExcelWriter('output2.xlsx') as writer:
-    for i_str in Col_list:
-        df_corr_abs_triu_toExcel_temp = df_corr_abs_triu.loc[:, i_str].mask(df_corr_abs_triu.loc[:, i_str].values < 0.8, np.nan).sort_values(ascending=False, na_position='last')
-        if np.sum(df_corr_abs_triu_toExcel_temp.isna().values*1) != len(df_corr_abs_triu_toExcel_temp.values):
-            df_corr_abs_triu_toExcel_temp.to_excel(writer, startcol = colnum)
-            colnum = colnum+3
+# Write to an excel sheet - variables with higher correlations
+colnum = 0
+with pd.ExcelWriter(sheet_folder+'High Correlations.xlsx') as writer:
+    for i_str in col_list:
+        df_corr_abs_triu_toexcel_temp = df_corr_abs_triu.loc[:, i_str].mask(df_corr_abs_triu.loc[:, i_str].values < 0.8, np.nan).sort_values(ascending=False, na_position='last')
+        if np.sum(df_corr_abs_triu_toexcel_temp.isna().values*1) != len(df_corr_abs_triu_toexcel_temp.values):
+            df_corr_abs_triu_toexcel_temp.to_excel(writer, startcol = colnum)
+            colnum = colnum+2
 
-
-
-
-# df_corr_abs_05up = temp.mask(temp < 0.7, np.nan)
-
+###############################################################################
+# Selected correlation analysis
+###############################################################################
 
 lab_filename_varname_pd_dict['TCHOL_I']
 
 
 r_bloodchol_cholintake = df_corr_abs_triu['I0_DR1TCHOL'].sort_values(ascending=False, na_position='last')['L34_LBXTC']
-Sample_count_bchol_and_ichol = np.sum(np.logical_and(df['I0_DR1TCHOL'].notna(), df['L34_LBXTC'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TCHOL', y='L34_LBXTC')
-
+sample_count_bchol_and_ichol = np.sum(np.logical_and(df['I0_DR1TCHOL'].notna(), df['L34_LBXTC'].notna())*1)
+ax11 = df.plot.scatter(x='I0_DR1TCHOL', y='L34_LBXTC')
+decorate_fig_corr(ax11, 'Cholesterol in Diet', 'Cholesterol in Blood', 'Cholesterol Diet vs Lab')
 
 
 lab_filename_varname_pd_dict['HDL_I']
 r_bloodhddchol_cholintake = df_corr_abs_triu['I0_DR1TCHOL'].sort_values(ascending=False, na_position='last')['L16_LBDHDD']
 Sample_count_bhddchol_and_ichol = np.sum(np.logical_and(df['I0_DR1TCHOL'].notna(), df['L16_LBDHDD'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TCHOL', y='L16_LBDHDD')
-
+ax12 = df.plot.scatter(x='I0_DR1TCHOL', y='L16_LBDHDD')
+decorate_fig_corr(ax12, 'Cholesterol in Diet', 'High Density Lipid Cholesterol in Blood', 'Cholesterol Diet vs HDL Cholesterol Lab')
 
 lab_filename_varname_pd_dict['TRIGLY_I']
 r_bloodlddchol_cholintake = df_corr_abs_triu['I0_DR1TCHOL'].sort_values(ascending=False, na_position='last')['L37_LBDLDL']
 Sample_count_blddchol_and_ichol = np.sum(np.logical_and(df['I0_DR1TCHOL'].notna(), df['L37_LBDLDL'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TCHOL', y='L37_LBDLDL')
+ax13 = df.plot.scatter(x='I0_DR1TCHOL', y='L37_LBDLDL')
+decorate_fig_corr(ax13, 'Cholesterol in Diet', 'High Density Lipid Cholesterol in Blood', 'Cholesterol Diet vs HDL Cholesterol Lab')
 
 
-
+# Look at variables in diet only
 #I0_DR1TLZ, I0_DR1TVK - n = 3031
 r = df_corr_triu['I0_DR1TLZ'].sort_values(ascending=False, na_position='last')['I0_DR1TVK']
 Sample_count = np.sum(np.logical_and(df['I0_DR1TLZ'].notna(), df['I0_DR1TVK'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TLZ', y='I0_DR1TVK')
+ax14 = df.plot.scatter(x='I0_DR1TLZ', y='I0_DR1TVK')
+decorate_fig_corr(ax14, 'Lutein and Zeaxanthin', 'Vitamin K', 'Lutein and Zeaxanthin vs Vitamin K')
 
 #I0_DR1TFA, I0_DR1TFDFE - n = 3031
 r = df_corr_triu['I0_DR1TFA'].sort_values(ascending=False, na_position='last')['I0_DR1TFDFE']
 Sample_count = np.sum(np.logical_and(df['I0_DR1TFA'].notna(), df['I0_DR1TFDFE'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TFA', y='I0_DR1TFDFE')
+ax15 = df.plot.scatter(x='I0_DR1TFA', y='I0_DR1TFDFE')
+decorate_fig_corr(ax15, 'Folic acid', 'Folate', 'Folic acid vs Folate')
 
 #I0_DR1TPROT, I0_DR1TSELE - n = 3031
 r = df_corr_triu['I0_DR1TPROT'].sort_values(ascending=False, na_position='last')['I0_DR1TSELE']
 Sample_count = np.sum(np.logical_and(df['I0_DR1TPROT'].notna(), df['I0_DR1TSELE'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TPROT', y='I0_DR1TSELE')
+ax16 = df.plot.scatter(x='I0_DR1TPROT', y='I0_DR1TSELE')
+decorate_fig_corr(ax16, 'Protein', 'Selenium', 'Protein vs Selenium')
 
 #I0_DR1TPROT, I0_DR1TPHOS - n = 3031
 r = df_corr_triu['I0_DR1TPROT'].sort_values(ascending=False, na_position='last')['I0_DR1TPHOS']
 Sample_count = np.sum(np.logical_and(df['I0_DR1TPROT'].notna(), df['I0_DR1TPHOS'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TPROT', y='I0_DR1TPHOS')
+ax17 = df.plot.scatter(x='I0_DR1TPROT', y='I0_DR1TPHOS')
+decorate_fig_corr(ax17, 'Protein', 'Phosphorus', 'Protein vs Phosphorus')
 
 #I0_DR1TCHOL, I0_DR1TP204 - n = 3031
 r = df_corr_triu['I0_DR1TCHOL'].sort_values(ascending=False, na_position='last')['I0_DR1TP204']
 Sample_count = np.sum(np.logical_and(df['I0_DR1TCHOL'].notna(), df['I0_DR1TP204'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TCHOL', y='I0_DR1TP204')
+ax18 = df.plot.scatter(x='I0_DR1TCHOL', y='I0_DR1TP204')
+decorate_fig_corr(ax18, 'Cholesterol', 'Eicosatetraenoic PFA20-4', 'Cholesterol vs Eicosatetraenoic PFA20-4')
 
 #I0_DR1TCHOL, I0_DR1TCHL - n = 3031
 r = df_corr_triu['I0_DR1TCHOL'].sort_values(ascending=False, na_position='last')['I0_DR1TCHL']
 Sample_count = np.sum(np.logical_and(df['I0_DR1TCHOL'].notna(), df['I0_DR1TCHL'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TCHOL', y='I0_DR1TCHL')
+ax19 = df.plot.scatter(x='I0_DR1TCHOL', y='I0_DR1TCHL')
+decorate_fig_corr(ax19, 'Cholesterol', 'Total choline', 'Cholesterol vs Total choline')
 
 #I0_DR1TTFAT, I0_DR1TKCAL - n = 3031
 r = df_corr_triu['I0_DR1TKCAL'].sort_values(ascending=False, na_position='last')['I0_DR1TTFAT']
 Sample_count = np.sum(np.logical_and(df['I0_DR1TKCAL'].notna(), df['I0_DR1TTFAT'].notna())*1)
-ax1 = df.plot.scatter(x='I0_DR1TKCAL', y='I0_DR1TTFAT')
+ax20 = df.plot.scatter(x='I0_DR1TKCAL', y='I0_DR1TTFAT')
+decorate_fig_corr(ax20, 'Total fat', 'Total calorie', 'Total fat vs Total calorie')
 
 # Fat list of variables correlated
 order = np.where(df_corr_triu['I0_DR1TTFAT'].sort_values(ascending=False, na_position='last').index.values == 'I0_DR1TP204')
@@ -264,38 +298,11 @@ r = df_corr_triu['I0_DR1TTFAT'].sort_values(ascending=False, na_position='last')
 print('r: ' + str(r))
 # 22nd in the list with r = 0.54
 
+###############################################################################
+# Save
+###############################################################################
 
+df_corr.to_pickle(save_folder+'df_corr.pkl')
 
-df_corr.to_pickle('df_corr.pkl')
+df_corr_triu.to_pickle(save_folder+'df_corr_triu.pkl')
 
-df.to_pickle('df.pkl')
-
-df_corr_triu.to_pickle('df_corr_triu.pkl')
-
-
-
-
-
-
-# I0_DR1TTFAT
-
-
-
-# diet_filenames[0]
-# diet_numVars = len(diet_filename_varname_pd_dict[diet_filenames[0]])
-
-# 2^d = 3000
-# dlog2(2) = log2(3000)
-# d = log2(3000)
-np.log2(3000)
-
-
-# df_corr.abs()
-# mask_triu = np.triu(np.ones((460, 460), dtype=bool))
-# np.fill_diagonal(mask_triu, False)
-# mask_flat = mask.flatten()
-
-# df_corr.values[mask]
-
-# mask_05 = (df_corr.values[mask]>0.5)
-# df_corr_05up = df_corr[mask_05]
