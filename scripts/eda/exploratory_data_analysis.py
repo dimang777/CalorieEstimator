@@ -6,7 +6,7 @@ import seaborn as sns
 ###############################################################################
 # Set up folders and variables
 ###############################################################################
-filename = 'df_basic_stats.py'
+filename = 'exploratory_data_analysis.py'
 save_folder = '../../data/cleaned_df/'
 load_folder = '../../data/cleaned_df/'
 
