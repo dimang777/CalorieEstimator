@@ -1,9 +1,10 @@
-# Feature reduction
+# Standardize and split into train and test
 
 import numpy as np
 import pandas as pd
 import pickle
-
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 
 ###############################################################################
 # Set up folders and variables
@@ -11,6 +12,7 @@ import pickle
 filename = 'data_setup_full_features.py'
 
 load_folder = '../../data/cleaned_df/'
+save_folder = '../../data/data_for_model/'
 
 
 ###############################################################################
@@ -86,20 +88,81 @@ print(df_diet_cla.describe())
 
 df_diet_y_sorted = df_diet_cla.join(df_diet_y_raw_sort).loc[:,'Class']
 
-df_diet_total_label = df_diet_total_nonan.join(df_diet_y_sorted)
+df_diet_total_w_label = df_diet_total_nonan.join(df_diet_y_sorted)
 
-class_0_flag = df_diet_total_label.loc[:,'Class'].values == 0
-class_1_flag = df_diet_total_label.loc[:,'Class'].values == 1
-class_2_flag = df_diet_total_label.loc[:,'Class'].values == 2
+class_0_flag = df_diet_total_w_label.loc[:,'Class'].values == 0
+class_1_flag = df_diet_total_w_label.loc[:,'Class'].values == 1
+class_2_flag = df_diet_total_w_label.loc[:,'Class'].values == 2
 
-Class_0_df_index = df_diet_total_label.iloc[class_0_flag,:].index
-Class_1_df_index = df_diet_total_label.iloc[class_1_flag,:].index
-Class_2_df_index = df_diet_total_label.iloc[class_2_flag,:].index
+Class_0_df_index = df_diet_total_w_label.iloc[class_0_flag,:].index
+Class_1_df_index = df_diet_total_w_label.iloc[class_1_flag,:].index
+Class_2_df_index = df_diet_total_w_label.iloc[class_2_flag,:].index
 
-df_diet_y = df_diet_total_label.loc[:,'Class'].copy()
+df_diet_y = df_diet_total_w_label.loc[:,'Class'].copy()
 
-# use this to split
-from sklearn.model_selection import train_test_split
+###############################################################################
+# Standardize
+###############################################################################
+
+scaler = StandardScaler()
+
+df_diet_total = pd.DataFrame(scaler.fit_transform(df_diet_total_nonan.values))
+
+###############################################################################
+# Divide into train and test set
+###############################################################################
+
+indices = range(df_diet_total.shape[0])
+x_train, x_test, y_train, y_test, train_idx, test_idx = train_test_split(\
+    df_diet_total, df_diet_y, indices, test_size=0.2, random_state=42, stratify = df_diet_y.to_numpy())
+train_flag = train_idx in indices
+test_flag = train_idx in indices
+
+###############################################################################
+# Save
+###############################################################################
+
+with open(save_folder + 'train_test.pkl', 'wb') as f:
+    pickle.dump([x_train, \
+                 x_test, \
+                 y_train, \
+                 y_test, \
+                 train_idx, \
+                 test_idx, \
+                 train_flag, \
+                 test_flag], f)
 
 
+with open(save_folder + 'train_test.pkl', 'rb') as f:
+    [x_train, \
+        x_test, \
+        y_train, \
+        y_test, \
+        train_idx, \
+        test_idx, \
+        train_flag, \
+        test_flag] = pickle.load(f)
 
+with open(save_folder + 'df_diet.pkl', 'wb') as f:
+    pickle.dump([df_diet, \
+        df_diet_total, \
+        df_diet_y, \
+        df_diet_y_raw, \
+        class_0_flag, \
+        class_1_flag, \
+        class_2_flag, \
+        Class_0_df_index, \
+        Class_1_df_index, \
+        Class_2_df_index], f)
+
+with open(save_folder + 'df_diet.pkl', 'rb') as f:
+    [df_diet, \
+        df_diet_total, \
+        df_diet_y, \
+        df_diet_y_raw, \
+        class_0_flag, \
+        class_1_flag, \
+        class_2_flag, \
+        Class_0_df_index, \
+        Class_1_df_index, \
+        Class_2_df_index] = pickle.load(f)
