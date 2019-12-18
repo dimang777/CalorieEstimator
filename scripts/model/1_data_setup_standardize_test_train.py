@@ -3,13 +3,13 @@
 import numpy as np
 import pandas as pd
 import pickle
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MaxAbsScaler
 from sklearn.model_selection import train_test_split
 
 ###############################################################################
 # Set up folders and variables
 ###############################################################################
-filename = 'data_setup_full_features.py'
+filename = '1_data_setup_standardize_test_train.py'
 
 load_folder = '../../data/cleaned_df/'
 save_folder = '../../data/data_for_model/'
@@ -101,19 +101,20 @@ Class_2_df_index = df_diet_total_w_label.iloc[class_2_flag,:].index
 df_diet_y = df_diet_total_w_label.loc[:,'Class'].copy()
 
 ###############################################################################
-# Standardize
+# Standardize - use MaxAbsScaler to retain 0 values
 ###############################################################################
 
-scaler = StandardScaler()
+scaler = MaxAbsScaler()
 
-df_diet_total = pd.DataFrame(scaler.fit_transform(df_diet_total_nonan.values))
+df_diet_total = pd.DataFrame(scaler.fit_transform(df_diet_total_nonan.values), \
+                             columns =df_diet_total_nonan.columns)
 
 ###############################################################################
 # Divide into train and test set
 ###############################################################################
 
 indices = range(df_diet_total.shape[0])
-x_train, x_test, y_train, y_test, train_idx, test_idx = train_test_split(\
+x_train_ful_df, x_test_ful_df, y_train_ful_df, y_test_ful_df, train_idx, test_idx = train_test_split(\
     df_diet_total, df_diet_y, indices, test_size=0.2, random_state=42, stratify = df_diet_y.to_numpy())
 train_flag = train_idx in indices
 test_flag = train_idx in indices
@@ -122,30 +123,29 @@ test_flag = train_idx in indices
 # Save
 ###############################################################################
 
-with open(save_folder + 'train_test.pkl', 'wb') as f:
-    pickle.dump([x_train, \
-                 x_test, \
-                 y_train, \
-                 y_test, \
+with open(save_folder + 'train_test_full_features.pkl', 'wb') as f:
+    pickle.dump([x_train_ful_df, \
+                 x_test_ful_df, \
+                 y_train_ful_df, \
+                 y_test_ful_df, \
                  train_idx, \
                  test_idx, \
                  train_flag, \
                  test_flag], f)
 
 
-with open(save_folder + 'train_test.pkl', 'rb') as f:
-    [x_train, \
-        x_test, \
-        y_train, \
-        y_test, \
+with open(save_folder + 'train_test_full_features.pkl', 'rb') as f:
+    [x_train_ful_df, \
+        x_test_ful_df, \
+        y_train_ful_df, \
+        y_test_ful_df, \
         train_idx, \
         test_idx, \
         train_flag, \
         test_flag] = pickle.load(f)
 
 with open(save_folder + 'df_diet.pkl', 'wb') as f:
-    pickle.dump([df_diet, \
-        df_diet_total, \
+    pickle.dump([df_diet_total, \
         df_diet_y, \
         df_diet_y_raw, \
         class_0_flag, \
@@ -156,8 +156,7 @@ with open(save_folder + 'df_diet.pkl', 'wb') as f:
         Class_2_df_index], f)
 
 with open(save_folder + 'df_diet.pkl', 'rb') as f:
-    [df_diet, \
-        df_diet_total, \
+    [df_diet_total, \
         df_diet_y, \
         df_diet_y_raw, \
         class_0_flag, \
