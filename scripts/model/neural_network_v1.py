@@ -3,7 +3,6 @@ import pickle
 import tensorflow as tf
 import seaborn as sns
 import matplotlib as plt
-# import numpy as np
 
 # GPU is available
 print(tf.test.is_gpu_available())
