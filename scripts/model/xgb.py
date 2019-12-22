@@ -4,12 +4,12 @@ from sklearn.metrics import accuracy_score
 import numpy as np
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import GridSearchCV
-from sklearn import svm
+import xgboost
 
 ###############################################################################
 # Set up folders and variables
 ###############################################################################
-filename = 'svm.py'
+filename = 'xgb.py'
 
 save_folder = '../../data/data_for_model/'
 load_folder = '../../data/data_for_model/'
@@ -37,12 +37,18 @@ with open(save_folder + 'train_test_sel_features.pkl', 'rb') as f:
 ###############################################################################
 
 
-C = [int(x) for x in np.logspace(start=0, stop=3, num=4)]
-kernel = ['linear', 'rbf']
-gamma = [(x) for x in np.logspace(start=-3, stop=2, num=6)]
-random_grid = {'C': C,
-               'kernel': kernel,
-               'gamma': gamma}
+max_depth = range(3, 11)
+learning_rate = np.arange(0.01, 0.1+0.01, 0.01)
+subsample = np.arange(0.8, 1+0.04, 0.04)
+colsample_bytree = np.arange(0.4, 1+0.1, 0.1)
+gamma = [0, 1, 5]
+eval_metric = ['merror']
+random_grid = {'max_depth': max_depth,
+               'learning_rate': learning_rate,
+               'subsample': subsample,
+               'colsample_bytree': colsample_bytree,
+               'gamma': gamma,
+               'eval_metric': eval_metric}
 print(random_grid)
 
 ###############################################################################
@@ -65,28 +71,46 @@ def evaluate(model, test_features, test_labels):
 
 
 # Use the random grid to search for best hyperparameters
-model = svm.SVC()
+# add tree_method = 'gpu_hist' for GPU
+model = xgboost.XGBClassifier(objective='multi:softprob',
+                              num_class=3)
 
 start = time.time()
 # Random search of parameters, using 3 fold cross validation,
 # search across 100 different combinations, and use all available cores
-svm_random = RandomizedSearchCV(estimator=model,
+xgb_random = RandomizedSearchCV(estimator=model,
                                 param_distributions=random_grid,
                                 n_iter=100,
                                 cv=3,
-                                verbose=0,
+                                verbose=2,
                                 random_state=42,
                                 n_jobs=-1)
 # Fit the random search model
-svm_random.fit(x_train_sel_df.values, y_train_sel_df.values)
+xgb_random.fit(x_train_sel_df.values, y_train_sel_df.values)
 
-print(svm_random.best_params_)
+print(xgb_random.best_params_)
 end = time.time()
 print(end - start)
+#!@@$!#@!#!$QTQ$%@#%!@#!$#@$!#@&^*%(&^)&* WORKED UNTIL HERE
+#!@@$!#@!#!$QTQ$%@#%!@#!$#@$!#@&^*%(&^)&* WORKED UNTIL HERE
+#!@@$!#@!#!$QTQ$%@#%!@#!$#@$!#@&^*%(&^)&* WORKED UNTIL HERE
+#!@@$!#@!#!$QTQ$%@#%!@#!$#@$!#@&^*%(&^)&* WORKED UNTIL HERE
+#!@@$!#@!#!$QTQ$%@#%!@#!$#@$!#@&^*%(&^)&* WORKED UNTIL HERE
+#!@@$!#@!#!$QTQ$%@#%!@#!$#@$!#@&^*%(&^)&* WORKED UNTIL HERE
+#!@@$!#@!#!$QTQ$%@#%!@#!$#@$!#@&^*%(&^)&* WORKED UNTIL HERE
+#!@@$!#@!#!$QTQ$%@#%!@#!$#@$!#@&^*%(&^)&* WORKED UNTIL HERE
 
 # 48 tasks
-# Using multicore - 5.15s
+# Using multicore - 67.8s
 # Using single core - 3.5s
+
+model = xgb_random.best_estimator_
+random_accuracy_train = evaluate(model,
+                               x_train_sel_df.values,
+                               y_train_sel_df.values)
+random_accuracy_test = evaluate(model,
+                              x_test_sel_df.values,
+                              y_test_sel_df.values)
 
 ###############################################################################
 # Grid search around the best parameters

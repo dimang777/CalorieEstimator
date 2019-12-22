@@ -11,7 +11,7 @@ print(tf.test.is_built_with_cuda())
 ###############################################################################
 # Set up folders and variables
 ###############################################################################
-filename = 'neural_network_v1.py'
+filename = 'nn_v1.py'
 
 save_folder = '../../data/data_for_model/'
 load_folder = '../../data/data_for_model/'
