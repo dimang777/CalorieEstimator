@@ -14,7 +14,6 @@ filename = 'svm.py'
 save_folder = '../../data/data_for_model/'
 load_folder = '../../data/data_for_model/'
 model_folder = '../../data/model/'
-figure_folder = '../../images/model/nn1/'
 
 ###############################################################################
 # Load

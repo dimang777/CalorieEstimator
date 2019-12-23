@@ -5,7 +5,6 @@ import numpy as np
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import GridSearchCV
 import xgboost
-import matplotlib.pyplot as plt
 
 ###############################################################################
 # Set up folders and variables
@@ -15,7 +14,6 @@ filename = 'xgb.py'
 save_folder = '../../data/data_for_model/'
 load_folder = '../../data/data_for_model/'
 model_folder = '../../data/model/'
-figure_folder = '../../images/model/nn1/'
 
 ###############################################################################
 # Load
@@ -78,7 +76,7 @@ def evaluate(model, test_features, test_labels):
 
 
 # Use the random grid to search for best hyperparameters
-# add tree_method = 'gpu_hist' for GPU - but doesn't seem to be 
+# add tree_method = 'gpu_hist' for GPU - but doesn't seem to be
 # compatible with CV and multicore deployment
 model = xgboost.XGBClassifier(objective='multi:softprob',
                               num_class=3)
@@ -106,11 +104,11 @@ print(end - start)
 
 model = xgb_random.best_estimator_
 random_accuracy_train = evaluate(model,
-                               x_train_sel_df.values,
-                               y_train_sel_df.values)
+                                 x_train_sel_df.values,
+                                 y_train_sel_df.values)
 random_accuracy_test = evaluate(model,
-                              x_test_sel_df.values,
-                              y_test_sel_df.values)
+                                x_test_sel_df.values,
+                                y_test_sel_df.values)
 
 ###############################################################################
 # Grid search around the best parameters
@@ -128,14 +126,14 @@ eval_metric = ['merror']
 eval_set_plot = [(x_train_sel_df.values, y_train_sel_df.values)]
 
 param_grid = {'n_estimators': n_estimators,
-               'max_depth': max_depth,
-               'learning_rate': learning_rate,
-               'subsample': subsample,
-               'colsample_bytree': colsample_bytree,
-               'gamma': gamma,
-               'early_stopping_rounds': early_stopping_rounds,
-               'eval_metric': eval_metric,
-               'eval_set_plot': eval_set_plot}
+              'max_depth': max_depth,
+              'learning_rate': learning_rate,
+              'subsample': subsample,
+              'colsample_bytree': colsample_bytree,
+              'gamma': gamma,
+              'early_stopping_rounds': early_stopping_rounds,
+              'eval_metric': eval_metric,
+              'eval_set_plot': eval_set_plot}
 print(param_grid)
 
 
