@@ -48,11 +48,11 @@ pip install tensorflow
 ```
 
 ### Folder Description
-There are four directories in the repo. The details of the structure of the repo is described in the following.
+There are four directories in the repo. The following describes the details of the structure of the repo.
 
 * /data
 
-Data folder contains relevant data used for the analysis. Data formats are in CSV, Excel, and pickle. The folder divides into six subdirectories, which are raw, raw_formatted, clean, cleaned_df, data_for_model, and model. As the names suggest, raw and raw_formatted contains unprocessed data, clean and cleaned_df contain cleaned data, data_for_model contains final data used to build models, and model contains tuned models. 
+/data folder contains relevant data used for the analysis. Data formats are in CSV, Excel, and pickle. The folder divides into six subdirectories, which are raw, raw_formatted, clean, cleaned_df, data_for_model, and model. As the names suggest, raw and raw_formatted contains unprocessed data, clean and cleaned_df contain cleaned data, data_for_model contains final data used to build models, and model contains tuned models. 
 * /images
 
 This folder contains images generated throughout the analysis and ones used in this document. 
@@ -61,11 +61,12 @@ This folder contains images generated throughout the analysis and ones used in t
 This folder contains Excel sheets containing some of the results from the analysis. 
 * /scripts
 
-Scripts folder contains Python files that were used to conduct the analysis. There are four subdirectories for each component of the system. 
-data_cleaning folder contains all python scripts used to clean and format the data.
-eda folder contains python scripts used to perform exploratory data analysis.
-model folder contains all python scripts used to select features and train models.
-archieve folder contains miscellenious files from the previous developments.
+/scripts folder contains Python files that were used to conduct the analysis. There are four subdirectories for each component of the system. 
+/scripts/data_cleaning folder contains all python scripts used to clean and format the data.
+/scripts/eda folder contains python scripts used to perform exploratory data analysis.
+/scripts/model folder contains all python scripts used to select features and train models.
+/script/archieve folder contains miscellaneous files from the previous developments.
+
 
 
 
