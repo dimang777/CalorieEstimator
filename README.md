@@ -193,7 +193,7 @@ C=1040, cache_size=200, class_weight=None, coef0=0.0,
     
 - RF
 
-{'bootstrap': False, 'max_depth': 69, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 1580}
+'bootstrap': False, 'max_depth': 69, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 1580
 
 - GB
 
@@ -219,6 +219,7 @@ V 1.100 – December 2019
 -	Deployed on GitHub
 -	Codes cleaned, organized
 -	SVM, XGBoost, naïve Bayes classifiers added
+
 V 1.000 – June 2019
 -	Data cleaning
 -	Exploratory data analysis
