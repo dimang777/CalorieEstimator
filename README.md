@@ -166,8 +166,11 @@ The table below shows the results of each classifier. GB and RF over-fitted the 
 | Test set accuracy |	98.26% |	98.51% |	93.05% |	95.29% |	83.87% |
 
 The tuned settings are listed below for the information.
-Model parameters
-| NN |
+
+### Model parameters
+
+ - NN
+ 
 Model: "sequential_1"
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
@@ -182,14 +185,16 @@ Total params: 115
 Trainable params: 115
 Non-trainable params: 0
 _________________________________________________________________
-| SVM |
+
+- SVM
+
 C=1040, cache_size=200, class_weight=None, coef0=0.0,
     decision_function_shape='ovr', degree=3, gamma=0.0002, kernel='linear',
     max_iter=-1, probability=False, random_state=None, shrinking=True,
     tol=0.001, verbose=False
-| RF |
+- RF
 {'bootstrap': False, 'max_depth': 69, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 1580}
-| GB |
+- GB
 base_score=0.5, booster='gbtree', colsample_bylevel=1,
               colsample_bynode=1, colsample_bytree=0.68,
               early_stopping_rounds=20, eval_metric='merror',
@@ -198,12 +203,12 @@ base_score=0.5, booster='gbtree', colsample_bylevel=1,
               n_jobs=1, nthread=None, num_class=3, objective='multi:softprob',
               random_state=0, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
               seed=None, silent=None, subsample=0.84, verbosity=1
-| NBC |
+- NBC
 priors=None, var_smoothing=1e-09
 
 
 
-Note:
+## Note
 As of December 2019, I have uploaded v 1.100 to the GitHub. This repo will be expanded as I investigate the problem further. 
 Updates
 V 1.100 – December 2019
