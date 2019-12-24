@@ -61,7 +61,7 @@ This folder contains images generated throughout the analysis and ones used in t
 This folder contains Excel sheets containing some of the results from the analysis. 
 * /scripts
 
-scripts folder contains Python files that were used to conduct the analysis. There are four subdirectories for each component of the system. 
+Scripts folder contains Python files that were used to conduct the analysis. There are four subdirectories for each component of the system. 
 data_cleaning folder contains all python scripts used to clean and format the data.
 eda folder contains python scripts used to perform exploratory data analysis.
 model folder contains all python scripts used to select features and train models.
