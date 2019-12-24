@@ -214,6 +214,7 @@ priors=None, var_smoothing=1e-09
 
 ## Note
 As of December 2019, I have uploaded v 1.100 to the GitHub. This repo will be expanded as I investigate the problem further. 
+
 Updates
 
 V 1.100 – December 2019
