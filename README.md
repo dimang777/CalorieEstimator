@@ -8,7 +8,7 @@ In June 2019, I worked on a side project where I used the National Health and Nu
 1. [Getting Started](#Getting-Started)
 1. [Data Cleaning and Joining](#Data-Cleaning-and-Joining)
 1. [Exploratory Data Analysis](#Exploratory-Data-Analysis)
-1. [Calorie Estimator](#Calorie-Estimator)
+1. [Calorie Estimator Models](#Calorie-Estimator-Models)
 
 ## Getting Started
 
@@ -129,7 +129,7 @@ An actionable recommendation or, in this case, a better context of the data is t
 
 The Python scripts used for the exploratory data analysis are contained in /scripts/eda/.
 
-## Calorie Estimator
+## Calorie Estimator Models
 
 One of the features in the diet data was the total calorie intake. This feature was used as a label and machine learning models were created to estimate the amount of calorie intake based on the rest of the features.
 
