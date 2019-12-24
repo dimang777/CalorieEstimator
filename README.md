@@ -62,9 +62,13 @@ This folder contains Excel sheets containing some of the results from the analys
 * /scripts
 
 /scripts folder contains Python files that were used to conduct the analysis. There are four subdirectories for each component of the system. 
+
 /scripts/data_cleaning folder contains all python scripts used to clean and format the data.
+
 /scripts/eda folder contains python scripts used to perform exploratory data analysis.
+
 /scripts/model folder contains all python scripts used to select features and train models.
+
 /script/archieve folder contains miscellaneous files from the previous developments.
 
 
